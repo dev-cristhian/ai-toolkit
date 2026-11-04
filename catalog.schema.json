@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dev-cristhian.github.io/ai-toolkit/catalog.schema.json",
+  "title": "ai-toolkit catalog",
+  "description": "Single source of truth for every own and recommended item in the hub.",
+  "type": "object",
+  "required": ["repository", "branch", "site", "levels", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "repository": { "type": "string", "format": "uri", "pattern": "^https://github\\.com/[^/]+/[^/]+$" },
+    "branch": { "type": "string", "minLength": 1 },
+    "site": { "type": "string", "format": "uri" },
+    "levels": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/level" }
+    },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/item" }
+    }
+  },
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1 },
+    "level": {
+      "type": "object",
+      "required": ["id", "slug", "name_en", "name_pt", "description_en", "description_pt"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name_en": { "$ref": "#/$defs/nonEmpty" },
+        "name_pt": { "$ref": "#/$defs/nonEmpty" },
+        "description_en": { "$ref": "#/$defs/nonEmpty" },
+        "description_pt": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": ["id", "type", "level", "origin", "name", "description_en", "description_pt", "author", "source", "install", "tags"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "type": { "enum": ["skill", "agent", "mcp"] },
+        "level": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "origin": { "enum": ["own", "recommended"] },
+        "name": { "$ref": "#/$defs/nonEmpty" },
+        "description_en": { "$ref": "#/$defs/nonEmpty" },
+        "description_pt": { "$ref": "#/$defs/nonEmpty" },
+        "author": { "$ref": "#/$defs/nonEmpty" },
+        "license": { "$ref": "#/$defs/nonEmpty" },
+        "homepage": { "type": "string", "format": "uri" },
+        "source": {
+          "type": "object",
+          "required": ["repo", "path", "ref"],
+          "additionalProperties": false,
+          "properties": {
+            "repo": { "type": "string", "format": "uri" },
+            "path": { "type": ["string", "null"] },
+            "ref": { "type": ["string", "null"] }
+          }
+        },
+        "install": {
+          "oneOf": [
+            { "$ref": "#/$defs/installSkill" },
+            { "$ref": "#/$defs/installAgent" },
+            { "$ref": "#/$defs/installMcp" }
+          ]
+        },
+        "tags": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9.+-]+$" }, "uniqueItems": true },
+        "requires": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "installSkill": {
+      "type": "object",
+      "required": ["method", "repo", "skill", "command"],
+      "additionalProperties": false,
+      "properties": {
+        "method": { "const": "npx-skills" },
+        "repo": { "type": "string", "format": "uri", "pattern": "^https://github\\.com/" },
+        "skill": { "type": "string", "pattern": "^[A-Za-z0-9._-]+$" },
+        "command": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "installAgent": {
+      "type": "object",
+      "required": ["method", "path", "command"],
+      "additionalProperties": false,
+      "properties": {
+        "method": { "const": "agent-file" },
+        "path": { "type": "string", "pattern": "^agents/[a-z0-9-]+\\.md$" },
+        "command": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "installMcp": {
+      "type": "object",
+      "required": ["method", "server", "command"],
+      "additionalProperties": false,
+      "properties": {
+        "method": { "const": "mcp-config" },
+        "server": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["name", "transport", "command"],
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "transport": { "const": "stdio" },
+                "command": { "$ref": "#/$defs/nonEmpty" },
+                "args": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            {
+              "type": "object",
+              "required": ["name", "transport", "url"],
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "transport": { "const": "http" },
+                "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+                "auth": {
+                  "type": "object",
+                  "required": ["type", "env", "optional"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": { "const": "bearer" },
+                    "env": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+                    "optional": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "command": { "$ref": "#/$defs/nonEmpty" }
+      }
+    }
+  }
+}

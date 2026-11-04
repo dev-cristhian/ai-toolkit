@@ -1,0 +1,60 @@
+name: Validate
+
+# push is limited to main so a PR branch is validated once (by pull_request), not twice.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Catalog, glossary and site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run validate
+      - name: Generated files are in sync
+        if: github.event_name == 'pull_request'
+        run: |
+          npm run build
+          if ! git diff --quiet; then
+            echo "::error::Generated files are out of date. Run 'npm run build' and commit the result."
+            git --no-pager diff --stat
+            exit 1
+          fi
+
+  installer:
+    name: Installer dry-run (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - name: CLI dry-run
+        run: node bin/ai-toolkit.mjs install --dry-run
+      - name: CLI list
+        run: node bin/ai-toolkit.mjs list
+      - name: install.sh dry-run
+        if: runner.os != 'Windows'
+        run: bash ./install.sh --dry-run --level 1 --target claude
+      - name: install.ps1 dry-run
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./install.ps1 --dry-run --level 1 --target claude

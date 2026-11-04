@@ -1,0 +1,1389 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ai-toolkit · Hub de skills, agents e MCPs para IA</title>
+<meta name="description" content="Hub com skills, agents e MCPs para trabalhar com IA no Claude Code, Cursor, Codex e VS Code + GitHub Copilot. Itens próprios, recomendações e glossário de IA em português.">
+<meta name="theme-color" content="#477A91">
+<link rel="canonical" href="https://dev-cristhian.github.io/ai-toolkit/" data-url="site">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="ai-toolkit · Hub de skills, agents e MCPs para IA">
+<meta property="og:description" content="Skills, agents e MCPs selecionados para Claude Code, Cursor, Codex e GitHub Copilot, instalados com um único comando.">
+<meta property="og:url" content="https://dev-cristhian.github.io/ai-toolkit/" data-url="site">
+<meta name="twitter:card" content="summary">
+<script>try{if(localStorage.getItem('ai-toolkit:theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
+<style>
+/* Design tokens. Palette provided by the author; extra tones keep WCAG AA.
+   Contrast is verified by `npm run validate` (see README > Accessibility). */
+:root {
+  --bg-color: #FFFFFF;
+  --primary-color: #477A91;
+  --primary-strong: #365E70;
+  --accent-color: #D6AA58;
+  --surface-color: #E1EBF0;
+  --border-color: #A9CDD4;
+  --border-strong: #5E7F8C;
+  --code-bg: #F3F7F9;
+  --text-color: #1D2B31;
+  --text-muted: #4B5B63;
+  --link-color: #365E70;
+  --on-primary: #FFFFFF;
+  --on-accent: #1D2B31;
+  --badge-bg: #E1EBF0;
+  --badge-text: #2F5566;
+  --focus-color: #365E70;
+  --card-bg: #FFFFFF;
+  --shadow: 0 1px 2px rgb(29 43 49 / 8%), 0 4px 12px rgb(29 43 49 / 6%);
+  --scrollbar-thumb: #A9CDD4;
+  --scrollbar-thumb-hover: #477A91;
+  --scrollbar-track: transparent;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem;
+  --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 4.5rem;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", Menlo, Consolas, monospace;
+  --max-width: 72rem;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg-color: #0F1B20;
+  --primary-color: #8EC1D3;
+  --primary-strong: #A9CDD4;
+  --surface-color: #16262D;
+  --border-color: #2B4550;
+  --border-strong: #6E95A4;
+  --code-bg: #0A1418;
+  --text-color: #E6EEF1;
+  --text-muted: #A7BCC4;
+  --link-color: #8EC1D3;
+  --on-primary: #0F1B20;
+  --badge-bg: #1F3540;
+  --badge-text: #C4DEE6;
+  --focus-color: #D6AA58;
+  --card-bg: #122127;
+  --shadow: 0 1px 2px rgb(0 0 0 / 40%);
+  --scrollbar-thumb: #2F4B57;
+  --scrollbar-thumb-hover: #6E95A4;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5rem; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--bg-color); color: var(--text-color); font: 1rem/1.6 var(--font-sans); overflow-wrap: anywhere; }
+img, svg { display: block; max-width: 100%; }
+a { color: var(--link-color); text-underline-offset: .2em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--focus-color); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3, h4, h5 { line-height: 1.25; margin: 0 0 var(--space-3); }
+h1 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.02em; }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); letter-spacing: -.01em; }
+h3 { font-size: 1.35rem; }
+h4 { font-size: 1.1rem; }
+h5 { font-size: 1.05rem; }
+p { margin: 0 0 var(--space-4); }
+code, pre { font-family: var(--font-mono); font-size: .9em; }
+:not(pre) > code { background: var(--code-bg); border: 1px solid var(--border-color); border-radius: 4px; padding: .05em .35em; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.container { width: 100%; max-width: var(--max-width); margin-inline: auto; padding-inline: var(--space-4); }
+@media (min-width: 48rem) { .container { padding-inline: var(--space-6); } }
+
+/* Skip link */
+.skip-link { position: absolute; left: var(--space-4); top: -100px; z-index: 100; background: var(--primary-strong); color: var(--on-primary); padding: var(--space-2) var(--space-4); border-radius: var(--radius-sm); font-weight: 600; }
+:root[data-theme="dark"] .skip-link { color: var(--bg-color); }
+.skip-link:focus { top: var(--space-2); }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 50; background: var(--bg-color); border-bottom: 1px solid var(--border-color); }
+.site-header__inner { display: flex; align-items: center; gap: var(--space-4); min-height: 4rem; flex-wrap: wrap; padding-block: var(--space-2); }
+.brand { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 700; color: var(--text-color); text-decoration: none; font-size: 1.1rem; }
+.brand svg { width: 28px; height: 28px; }
+.nav { margin-left: auto; }
+.nav ul { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); list-style: none; margin: 0; padding: 0; }
+.nav a { display: inline-block; padding: var(--space-2) 0; color: var(--text-color); text-decoration: none; font-weight: 500; }
+.nav a:hover { color: var(--link-color); text-decoration: underline; }
+.theme-toggle { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-3); border: 1px solid var(--border-strong); border-radius: 999px; background: transparent; color: var(--text-color); font: inherit; font-size: .9rem; cursor: pointer; }
+.theme-toggle:hover { background: var(--surface-color); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (max-width: 40rem) { .site-header { position: static; } .nav { order: 3; width: 100%; margin-left: 0; } .theme-toggle { margin-left: auto; } }
+
+/* Scrollbars: thin, rounded, palette colors, no arrow buttons.
+   Chromium and Safari use ::-webkit-scrollbar (full control). The standard
+   properties are applied only where that is unsupported (Firefox), because
+   Chromium ignores ::-webkit-scrollbar once scrollbar-color is set. */
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) var(--bg-color); }
+  pre { scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track); }
+  pre:hover, pre:focus-visible { scrollbar-color: var(--scrollbar-thumb-hover) var(--scrollbar-track); }
+}
+::-webkit-scrollbar { width: 12px; height: 10px; }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border: 3px solid transparent; border-radius: 999px; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-thumb-hover); }
+::-webkit-scrollbar-corner { background: transparent; }
+pre::-webkit-scrollbar { height: 8px; }
+pre::-webkit-scrollbar-thumb { border-width: 2px; }
+pre:hover::-webkit-scrollbar-thumb, pre:focus-visible::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb-hover); }
+
+/* Accordion (WAI-ARIA pattern: h2 > button[aria-expanded] controlling a panel).
+   Without JavaScript the headings stay plain and every panel is visible. */
+.accordion__heading { margin: 0; }
+.accordion__trigger { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); width: 100%; min-height: 44px; padding: var(--space-2) 0; border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
+.accordion__trigger:hover .accordion__label { color: var(--link-color); }
+.accordion__icon { flex: none; display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border: 1px solid var(--border-strong); border-radius: 50%; background: var(--card-bg); color: var(--link-color); transition: transform .25s ease, background-color .2s ease; }
+.accordion__icon svg { width: 1.1rem; height: 1.1rem; }
+.accordion__trigger:hover .accordion__icon { background: var(--surface-color); }
+.accordion__trigger[aria-expanded="true"] .accordion__icon { transform: rotate(180deg); }
+.accordion__panel { padding-top: var(--space-3); }
+.accordion.is-collapsed { padding-block: var(--space-6); }
+
+/* Sections */
+.section { padding-block: var(--space-8); }
+.section--surface { background: var(--surface-color); }
+.section__lead { max-width: 46rem; color: var(--text-muted); font-size: 1.05rem; }
+.eyebrow { display: inline-block; margin-bottom: var(--space-3); padding: var(--space-1) var(--space-3); border-radius: 999px; background: var(--accent-color); color: var(--on-accent); font-weight: 600; font-size: .85rem; }
+
+/* Hero */
+.hero { padding-block: var(--space-8) var(--space-7); border-bottom: 4px solid var(--accent-color); }
+.hero__lead { max-width: 44rem; font-size: 1.15rem; color: var(--text-muted); }
+.hero__grid { display: grid; gap: var(--space-5); margin-top: var(--space-6); }
+@media (min-width: 60rem) { .hero__grid { grid-template-columns: 1.15fr .85fr; align-items: start; } }
+.hero__audience { margin: 0; padding: var(--space-5); border: 1px solid var(--border-color); border-left: 4px solid var(--accent-color); border-radius: var(--radius); background: var(--card-bg); }
+.hero__audience-title { font-size: 1.1rem; }
+.site-footer h2 { font-size: 1.25rem; }
+.hero__audience ul { margin: 0; padding-left: 1.2rem; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+.stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); list-style: none; padding: 0; margin: var(--space-5) 0 0; color: var(--text-muted); }
+.stats strong { color: var(--text-color); font-size: 1.25rem; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-5); border-radius: var(--radius-sm); border: 2px solid transparent; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+.btn--primary { background: var(--primary-color); color: var(--on-primary); }
+.btn--primary:hover { background: var(--primary-strong); }
+.btn--ghost { border-color: var(--border-strong); color: var(--text-color); background: transparent; }
+.btn--ghost:hover { background: var(--surface-color); }
+.btn svg { width: 18px; height: 18px; }
+
+/* Command blocks */
+.cmd { margin: 0 0 var(--space-3); }
+.cmd__label { display: block; font-size: .85rem; font-weight: 600; color: var(--text-muted); margin-bottom: var(--space-1); }
+.cmd__row { display: flex; align-items: stretch; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--code-bg); overflow: hidden; }
+/* Grid/flex children default to min-width:auto, which lets long commands push
+   the layout wider than the viewport; allow them to shrink and scroll instead. */
+.hero__grid > *, .cards > *, .glossary > *, .tab-panel dl > *, .card, .cmd, .cmd__row, details { min-width: 0; }
+.cmd pre { flex: 1; min-width: 0; margin: 0; padding: var(--space-3); overflow-x: auto; white-space: pre; font-size: .85rem; line-height: 1.5; color: var(--text-color); }
+.btn-copy { flex: none; display: inline-flex; align-items: center; gap: var(--space-1); min-width: 44px; min-height: 44px; padding: 0 var(--space-3); border: 0; border-left: 1px solid var(--border-color); background: var(--card-bg); color: var(--link-color); font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; }
+.btn-copy:hover { background: var(--surface-color); }
+.btn-copy svg { width: 16px; height: 16px; }
+.btn-copy[data-copied="true"] { color: var(--text-color); }
+
+/* Glossary */
+.toolbar { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); align-items: end; margin-bottom: var(--space-5); }
+.field { display: flex; flex-direction: column; gap: var(--space-1); flex: 1 1 16rem; max-width: 28rem; }
+.field label { font-weight: 600; font-size: .95rem; }
+.field input { min-height: 44px; padding: 0 var(--space-3); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--card-bg); color: var(--text-color); font: inherit; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); border: 0; margin: 0; padding: 0; }
+.chips legend { font-weight: 600; font-size: .95rem; margin-bottom: var(--space-1); padding: 0; }
+.chip { min-height: 44px; padding: 0 var(--space-4); border: 1px solid var(--border-strong); border-radius: 999px; background: var(--card-bg); color: var(--text-color); font: inherit; font-size: .9rem; cursor: pointer; }
+.chip:hover { border-color: var(--link-color); }
+.chip[aria-pressed="true"] { background: var(--primary-strong); border-color: var(--primary-strong); color: var(--on-primary); }
+.results-count { margin: 0 0 var(--space-4); color: var(--text-muted); font-size: .95rem; }
+.glossary { display: grid; gap: var(--space-4); margin: 0; }
+@media (min-width: 48rem) { .glossary { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 72rem) { .glossary { grid-template-columns: repeat(3, 1fr); } }
+.term { padding: var(--space-4) var(--space-5); background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius); box-shadow: var(--shadow); }
+.term dt { font-weight: 700; font-size: 1.05rem; margin-bottom: var(--space-2); }
+.term dfn { font-style: normal; }
+.term dd { margin: 0; }
+.term dd p { margin-bottom: var(--space-2); }
+.term dd p:last-child { margin-bottom: 0; }
+.term__cat { display: inline-block; margin-bottom: var(--space-2); }
+.term__example { color: var(--text-muted); font-size: .95rem; }
+.empty { padding: var(--space-4) var(--space-5); border: 1px dashed var(--border-strong); border-radius: var(--radius); color: var(--text-muted); background: var(--card-bg); }
+
+/* Badges */
+.badge { display: inline-block; padding: .1rem .55rem; border-radius: 999px; background: var(--badge-bg); color: var(--badge-text); font-size: .78rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.badge--own { background: var(--accent-color); color: var(--on-accent); }
+
+/* Install tabs */
+.tabs__list { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-4); }
+.tabs__tab { min-height: 44px; padding: 0 var(--space-4); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--card-bg); color: var(--text-color); font: inherit; font-weight: 600; cursor: pointer; }
+.tabs__tab[aria-selected="true"] { background: var(--primary-strong); border-color: var(--primary-strong); color: var(--on-primary); }
+.tab-panel { padding: var(--space-5); background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius); margin-bottom: var(--space-4); }
+.tabs.is-enhanced .tab-panel__title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tab-panel dl { display: grid; gap: var(--space-2) var(--space-4); margin: 0 0 var(--space-4); }
+@media (min-width: 48rem) { .tab-panel dl { grid-template-columns: max-content 1fr; } }
+.tab-panel dt { font-weight: 600; }
+.tab-panel dd { margin: 0; }
+.tab-panel ol { padding-left: 1.25rem; }
+.note { padding: var(--space-3) var(--space-4); border-left: 4px solid var(--accent-color); background: var(--code-bg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.card .note { font-size: .9rem; margin-bottom: var(--space-3); }
+
+/* Catalog */
+.level { padding-top: var(--space-7); }
+.level:first-of-type { padding-top: var(--space-5); }
+.level__header { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
+.level__number { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--accent-color); color: var(--on-accent); font-weight: 700; }
+.level__nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); list-style: none; padding: 0; margin: 0 0 var(--space-4); }
+.group { margin-top: var(--space-5); }
+.cards { display: grid; gap: var(--space-4); list-style: none; padding: 0; margin: 0; }
+@media (min-width: 48rem) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 72rem) { .cards { grid-template-columns: repeat(3, 1fr); } }
+.card { display: flex; flex-direction: column; height: 100%; padding: var(--space-5); background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius); box-shadow: var(--shadow); }
+.card__meta { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-3); }
+.card__title { font-size: 1.1rem; margin-bottom: var(--space-2); }
+.card__desc { flex: 1; }
+.card__author { color: var(--text-muted); font-size: .95rem; }
+.card details { margin-bottom: var(--space-3); }
+.card summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: var(--space-2); color: var(--link-color); font-weight: 600; list-style: none; }
+.card summary::-webkit-details-marker { display: none; }
+.card summary::before { content: ""; width: .5em; height: .5em; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); }
+.card details[open] > summary::before { transform: rotate(45deg); }
+.card__link { align-self: flex-start; font-weight: 600; }
+[hidden] { display: none !important; }
+
+/* Footer */
+.site-footer { padding-block: var(--space-7); border-top: 4px solid var(--accent-color); background: var(--surface-color); }
+.site-footer p { color: var(--text-muted); }
+.credits { columns: 14rem; padding-left: 1.2rem; color: var(--text-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media print { .site-header, .btn-copy, .theme-toggle, .toolbar { display: none !important; } }
+</style>
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="#topo">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="8" fill="#477A91"/><path d="M9 22 16 8l7 14" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="19" r="2.5" fill="#D6AA58"/></svg>
+      ai-toolkit
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <ul>
+        <li><a href="#glossario">Glossário</a></li>
+        <li><a href="#como-instalar">Como instalar</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="https://github.com/dev-cristhian/ai-toolkit" data-url="repository">GitHub</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <span>Modo escuro</span>
+    </button>
+  </div>
+</header>
+
+<main id="conteudo" tabindex="-1">
+  <section class="hero" id="topo" aria-labelledby="hero-title">
+    <div class="container">
+      <span class="eyebrow">Hub pessoal de IA</span>
+      <h1 id="hero-title">Skills, agents e MCPs para turbinar seu trabalho com IA</h1>
+      <p class="hero__lead">O <strong>ai-toolkit</strong> reúne em um só lugar o que eu uso e recomendo para trabalhar com IA no dia a dia: itens que eu mesmo mantenho e uma seleção dos melhores itens da comunidade. Tudo é instalado com um único comando no Claude Code, Cursor, Codex e VS Code + GitHub Copilot.</p>
+      <div class="hero__grid">
+        <div>
+          <!-- QUICKSTART:START -->
+          <div class="cmd">
+            <span class="cmd__label">macOS e Linux</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash</code></pre>
+              <button type="button" class="btn-copy" data-copy="curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação para macOS e Linux</span></button>
+            </div>
+          </div>
+          <div class="cmd">
+            <span class="cmd__label">Windows (PowerShell)</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1 | iex</code></pre>
+              <button type="button" class="btn-copy" data-copy="irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1 | iex"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação para Windows</span></button>
+            </div>
+          </div>
+          <p class="results-count">O instalador mostra o plano e pede confirmação antes de mudar qualquer coisa. Para só visualizar, use a opção <code>--dry-run</code> (veja <a href="#como-instalar">Como instalar</a>).</p>
+          <!-- QUICKSTART:END -->
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#catalogo">Ver o catálogo</a>
+            <a class="btn btn--ghost" href="https://github.com/dev-cristhian/ai-toolkit" data-url="repository"><svg aria-hidden="true" focusable="false"><use href="#i-github"/></svg>Repositório no GitHub</a>
+          </div>
+        </div>
+        <div class="hero__audience">
+          <h2 class="hero__audience-title">Para quem é?</h2>
+          <ul>
+            <li>Devs que usam IA para programar e querem um bom ponto de partida.</li>
+            <li>Pessoas de QA, produto e negócio que querem levar a IA para discovery, specs e testes.</li>
+            <li>Quem quer entender os termos de IA sem complicação (veja o glossário logo abaixo).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface accordion" id="glossario" aria-labelledby="glossario-title" data-accordion="closed">
+    <div class="container">
+      <h2 class="accordion__heading" id="glossario-title" data-accordion-heading>Glossário de IA</h2>
+      <div class="accordion__panel" id="glossario-conteudo">
+      <p class="section__lead">Os termos mais usados no mundo da IA, explicados em português simples. Os nomes ficam em inglês, como a comunidade usa no dia a dia.</p>
+      <!-- GLOSSARY:START -->
+      <div class="toolbar" data-glossary-toolbar hidden>
+        <div class="field">
+          <label for="glossary-search">Buscar termo</label>
+          <input type="search" id="glossary-search" placeholder="Ex.: token, RAG, agent" autocomplete="off" aria-describedby="glossary-count">
+        </div>
+        <fieldset class="chips">
+          <legend>Categoria</legend>
+          <button type="button" class="chip" data-glossary-category="" aria-pressed="true">Todos</button>
+          <button type="button" class="chip" data-glossary-category="basics" aria-pressed="false">Fundamentos</button>
+          <button type="button" class="chip" data-glossary-category="models" aria-pressed="false">Modelos</button>
+          <button type="button" class="chip" data-glossary-category="prompting" aria-pressed="false">Prompting e contexto</button>
+          <button type="button" class="chip" data-glossary-category="agents" aria-pressed="false">Agents e ferramentas</button>
+          <button type="button" class="chip" data-glossary-category="data" aria-pressed="false">Dados e RAG</button>
+        </fieldset>
+      </div>
+      <p class="results-count" id="glossary-count" data-total="30">30 termos</p>
+      <dl class="glossary" id="glossary-list">
+        <div class="term" id="termo-agentic-workflow" data-category="agents" data-search="agentic workflow fluxo de trabalho em que a ia executa várias etapas com certa autonomia (planejar, executar, verificar, corrigir), em vez de responder uma pergunta isolada. agents e ferramentas">
+          <dt><dfn>Agentic workflow</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Agents e ferramentas</span>
+            <p>Fluxo de trabalho em que a IA executa várias etapas com certa autonomia (planejar, executar, verificar, corrigir), em vez de responder uma pergunta isolada.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-agents" data-category="agents" data-search="agents um llm que não só responde, mas age: planeja etapas, usa ferramentas (ler arquivos, rodar comandos, pesquisar na web), observa o resultado e repete até concluir a tarefa. pedir “corrija o teste que está falhando” e o agent abrir os arquivos, rodar os testes, editar o código e rodar de novo. agents e ferramentas">
+          <dt><dfn>Agents</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Agents e ferramentas</span>
+            <p>Um LLM que não só responde, mas age: planeja etapas, usa ferramentas (ler arquivos, rodar comandos, pesquisar na web), observa o resultado e repete até concluir a tarefa.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Pedir “corrija o teste que está falhando” e o agent abrir os arquivos, rodar os testes, editar o código e rodar de novo.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-chain-of-thought" data-category="prompting" data-search="chain-of-thought prompting pedir que a ia mostre o raciocínio passo a passo antes da resposta final. isso costuma melhorar o resultado em problemas que exigem várias etapas. “pense passo a passo antes de responder: quanto custa o pedido com frete e desconto?” prompting e contexto">
+          <dt><dfn>Chain-of-thought Prompting</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Prompting e contexto</span>
+            <p>Pedir que a IA mostre o raciocínio passo a passo antes da resposta final. Isso costuma melhorar o resultado em problemas que exigem várias etapas.</p>
+            <p class="term__example"><strong>Exemplo:</strong> “Pense passo a passo antes de responder: quanto custa o pedido com frete e desconto?”</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-context-engineering" data-category="prompting" data-search="context engineering evolução do prompt engineering: cuidar de tudo o que entra na context window (instruções, documentos, ferramentas, histórico, memória) para que o modelo tenha exatamente a informação certa, sem excesso. prompting e contexto">
+          <dt><dfn>Context engineering</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Prompting e contexto</span>
+            <p>Evolução do prompt engineering: cuidar de tudo o que entra na context window (instruções, documentos, ferramentas, histórico, memória) para que o modelo tenha exatamente a informação certa, sem excesso.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-context-window" data-category="prompting" data-search="context window a “memória de curto prazo” do modelo: o máximo de tokens que ele consegue considerar de uma vez, somando suas instruções, arquivos, histórico da conversa e a própria resposta. o que passa do limite é cortado ou resumido. prompting e contexto">
+          <dt><dfn>Context window</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Prompting e contexto</span>
+            <p>A “memória de curto prazo” do modelo: o máximo de tokens que ele consegue considerar de uma vez, somando suas instruções, arquivos, histórico da conversa e a própria resposta. O que passa do limite é cortado ou resumido.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-embeddings" data-category="data" data-search="embeddings uma forma de transformar texto (ou imagens) em uma lista de números que representa o significado. textos com sentido parecido ficam com números próximos, o que permite buscar por significado, e não só por palavra exata. buscar “como cancelar meu plano” e encontrar o artigo “encerrar assinatura”. dados e rag">
+          <dt><dfn>Embeddings</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Dados e RAG</span>
+            <p>Uma forma de transformar texto (ou imagens) em uma lista de números que representa o significado. Textos com sentido parecido ficam com números próximos, o que permite buscar por significado, e não só por palavra exata.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Buscar “como cancelar meu plano” e encontrar o artigo “Encerrar assinatura”.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-emergent-behavior" data-category="basics" data-search="emergent behavior habilidade que aparece em modelos grandes sem ter sido ensinada diretamente, como resolver problemas em etapas ou traduzir entre idiomas pouco vistos no treino. fundamentos">
+          <dt><dfn>Emergent Behavior</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Fundamentos</span>
+            <p>Habilidade que aparece em modelos grandes sem ter sido ensinada diretamente, como resolver problemas em etapas ou traduzir entre idiomas pouco vistos no treino.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-fine-tuning" data-category="models" data-search="fine-tuning treinar um pouco mais um modelo que já existe, com seus próprios exemplos, para especializá-lo em uma tarefa, um tom de voz ou um domínio. ajustar um modelo com milhares de respostas do seu suporte para que ele responda no padrão da empresa. modelos">
+          <dt><dfn>Fine-tuning</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Modelos</span>
+            <p>Treinar um pouco mais um modelo que já existe, com seus próprios exemplos, para especializá-lo em uma tarefa, um tom de voz ou um domínio.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Ajustar um modelo com milhares de respostas do seu suporte para que ele responda no padrão da empresa.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-generative-ai" data-category="basics" data-search="generative ai ia que cria conteúdo novo (texto, código, imagem, áudio ou vídeo) a partir de um pedido, em vez de apenas classificar ou prever algo. pedir “escreva um e-mail de boas-vindas para novos clientes” e receber o texto pronto. fundamentos">
+          <dt><dfn>Generative AI</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Fundamentos</span>
+            <p>IA que cria conteúdo novo (texto, código, imagem, áudio ou vídeo) a partir de um pedido, em vez de apenas classificar ou prever algo.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Pedir “escreva um e-mail de boas-vindas para novos clientes” e receber o texto pronto.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-hallucination" data-category="models" data-search="hallucination quando a ia inventa algo com total confiança: um fato, uma citação, uma função de biblioteca que não existe. por isso é importante conferir e dar fontes confiáveis no contexto. o modelo sugere um método `.tosmartjson()` que nunca existiu na biblioteca. modelos">
+          <dt><dfn>Hallucination</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Modelos</span>
+            <p>Quando a IA inventa algo com total confiança: um fato, uma citação, uma função de biblioteca que não existe. Por isso é importante conferir e dar fontes confiáveis no contexto.</p>
+            <p class="term__example"><strong>Exemplo:</strong> O modelo sugere um método <code>.toSmartJSON()</code> que nunca existiu na biblioteca.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-llm" data-category="models" data-search="large language model (llm) modelo de ia treinado com uma quantidade enorme de texto para prever a próxima palavra (token). disso surge a capacidade de conversar, resumir, traduzir e escrever código. claude, gpt, gemini e llama são llms. modelos">
+          <dt><dfn>Large Language Model (LLM)</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Modelos</span>
+            <p>Modelo de IA treinado com uma quantidade enorme de texto para prever a próxima palavra (token). Disso surge a capacidade de conversar, resumir, traduzir e escrever código.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Claude, GPT, Gemini e Llama são LLMs.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-mcp" data-category="agents" data-search="mcp (model context protocol) padrão aberto para conectar ias a ferramentas e fontes de dados. um “mcp server” expõe ferramentas, e qualquer app compatível (claude, cursor, codex, copilot) consegue usá-las. funciona como uma “tomada universal” para a ia. com o playwright mcp, o agent consegue abrir um navegador e testar sua aplicação. agents e ferramentas">
+          <dt><dfn>MCP (Model Context Protocol)</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Agents e ferramentas</span>
+            <p>Padrão aberto para conectar IAs a ferramentas e fontes de dados. Um “MCP server” expõe ferramentas, e qualquer app compatível (Claude, Cursor, Codex, Copilot) consegue usá-las. Funciona como uma “tomada universal” para a IA.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Com o Playwright MCP, o agent consegue abrir um navegador e testar sua aplicação.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-system-prompt" data-category="prompting" data-search="meta prompt / system prompt instruções de fundo que valem para a conversa inteira e definem o papel, as regras e o tom da ia. normalmente o usuário final não vê. “você é um assistente de suporte da loja x. responda sempre em português e nunca prometa prazos.” prompting e contexto">
+          <dt><dfn>Meta Prompt / System Prompt</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Prompting e contexto</span>
+            <p>Instruções de fundo que valem para a conversa inteira e definem o papel, as regras e o tom da IA. Normalmente o usuário final não vê.</p>
+            <p class="term__example"><strong>Exemplo:</strong> “Você é um assistente de suporte da Loja X. Responda sempre em português e nunca prometa prazos.”</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-multi-agent-system" data-category="agents" data-search="multi-agent system vários agents trabalhando juntos, cada um com um papel (por exemplo: um planeja, outro programa, outro revisa), trocando resultados entre si. agents e ferramentas">
+          <dt><dfn>Multi-agent system</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Agents e ferramentas</span>
+            <p>Vários agents trabalhando juntos, cada um com um papel (por exemplo: um planeja, outro programa, outro revisa), trocando resultados entre si.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-multimodal-model" data-category="models" data-search="multimodal model modelo que entende (e às vezes gera) mais de um tipo de conteúdo: texto, imagem, áudio, vídeo. enviar o print de uma tela com erro e perguntar o que está errado. modelos">
+          <dt><dfn>Multimodal Model</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Modelos</span>
+            <p>Modelo que entende (e às vezes gera) mais de um tipo de conteúdo: texto, imagem, áudio, vídeo.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Enviar o print de uma tela com erro e perguntar o que está errado.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-nlp" data-category="basics" data-search="natural language processing (nlp) área da computação que ensina máquinas a entender e produzir a linguagem que as pessoas falam e escrevem. os llms são a geração mais recente dessa área. tradutores automáticos, corretores ortográficos e chatbots usam nlp. fundamentos">
+          <dt><dfn>Natural Language Processing (NLP)</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Fundamentos</span>
+            <p>Área da computação que ensina máquinas a entender e produzir a linguagem que as pessoas falam e escrevem. Os LLMs são a geração mais recente dessa área.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Tradutores automáticos, corretores ortográficos e chatbots usam NLP.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-neural-networks" data-category="basics" data-search="neural networks modelos matemáticos inspirados, de forma bem simplificada, nos neurônios do cérebro. são camadas de “unidades” conectadas que aprendem padrões a partir de muitos exemplos. fundamentos">
+          <dt><dfn>Neural Networks</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Fundamentos</span>
+            <p>Modelos matemáticos inspirados, de forma bem simplificada, nos neurônios do cérebro. São camadas de “unidades” conectadas que aprendem padrões a partir de muitos exemplos.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-parameters" data-category="basics" data-search="parameters os números internos que um modelo ajusta durante o treinamento; é ali que fica o que ele “aprendeu”. mais parameters costumam significar mais capacidade, mas também mais custo para rodar. quando se fala em “modelo de 70b”, são 70 bilhões de parameters. fundamentos">
+          <dt><dfn>Parameters</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Fundamentos</span>
+            <p>Os números internos que um modelo ajusta durante o treinamento; é ali que fica o que ele “aprendeu”. Mais parameters costumam significar mais capacidade, mas também mais custo para rodar.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Quando se fala em “modelo de 70B”, são 70 bilhões de parameters.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-prompt-engineering" data-category="prompting" data-search="prompt engineering a prática de escrever bons pedidos (prompts) para a ia: dar contexto, objetivo, formato esperado, exemplos e restrições claras para obter respostas melhores. em vez de “melhore esse texto”, dizer “reescreva para um público leigo, em até 3 parágrafos, mantendo os números”. prompting e contexto">
+          <dt><dfn>Prompt Engineering</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Prompting e contexto</span>
+            <p>A prática de escrever bons pedidos (prompts) para a IA: dar contexto, objetivo, formato esperado, exemplos e restrições claras para obter respostas melhores.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Em vez de “melhore esse texto”, dizer “reescreva para um público leigo, em até 3 parágrafos, mantendo os números”.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-rag" data-category="data" data-search="rag (retrieval-augmented generation) técnica em que, antes de responder, o sistema busca trechos relevantes nos seus documentos e os coloca no prompt. assim a ia responde com base em informação atual e própria, reduzindo hallucination. um chatbot que consulta o manual interno da empresa antes de responder ao funcionário. dados e rag">
+          <dt><dfn>RAG (Retrieval-Augmented Generation)</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Dados e RAG</span>
+            <p>Técnica em que, antes de responder, o sistema busca trechos relevantes nos seus documentos e os coloca no prompt. Assim a IA responde com base em informação atual e própria, reduzindo hallucination.</p>
+            <p class="term__example"><strong>Exemplo:</strong> Um chatbot que consulta o manual interno da empresa antes de responder ao funcionário.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-reasoning-models" data-category="models" data-search="reasoning models modelos que “pensam antes de responder”: gastam mais tempo e tokens raciocinando em etapas internas antes de dar a resposta final. costumam ir melhor em matemática, lógica e código complexo. modelos">
+          <dt><dfn>Reasoning Models</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Modelos</span>
+            <p>Modelos que “pensam antes de responder”: gastam mais tempo e tokens raciocinando em etapas internas antes de dar a resposta final. Costumam ir melhor em matemática, lógica e código complexo.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-references" data-category="prompting" data-search="references materiais de apoio que você entrega à ia para ela se basear: documentação, guias de estilo, exemplos, links. em skills, costumam ficar numa pasta `references/` e são lidos só quando necessários, economizando contexto. a skill web-design-guidelines guarda suas regras de acessibilidade em `references/guidelines.md`. prompting e contexto">
+          <dt><dfn>References</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Prompting e contexto</span>
+            <p>Materiais de apoio que você entrega à IA para ela se basear: documentação, guias de estilo, exemplos, links. Em skills, costumam ficar numa pasta <code>references/</code> e são lidos só quando necessários, economizando contexto.</p>
+            <p class="term__example"><strong>Exemplo:</strong> A skill web-design-guidelines guarda suas regras de acessibilidade em <code>references/guidelines.md</code>.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-reinforcement-learning" data-category="basics" data-search="reinforcement learning forma de treinar por tentativa e erro: o modelo recebe “recompensas” quando acerta e “penalidades” quando erra, e aprende a preferir o que dá certo. é muito usada para deixar llms mais úteis e seguros (por exemplo, rlhf, com feedback humano). fundamentos">
+          <dt><dfn>Reinforcement Learning</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Fundamentos</span>
+            <p>Forma de treinar por tentativa e erro: o modelo recebe “recompensas” quando acerta e “penalidades” quando erra, e aprende a preferir o que dá certo. É muito usada para deixar LLMs mais úteis e seguros (por exemplo, RLHF, com feedback humano).</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-skill" data-category="agents" data-search="skill um pacote de instruções (um arquivo skill.md, mais referências e scripts opcionais) que ensina o agent a fazer uma tarefa específica do seu jeito. o agent só carrega a skill quando ela é relevante. a skill grill-me faz o agent entrevistar você sobre um plano antes de começar a programar. agents e ferramentas">
+          <dt><dfn>Skill</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Agents e ferramentas</span>
+            <p>Um pacote de instruções (um arquivo SKILL.md, mais referências e scripts opcionais) que ensina o agent a fazer uma tarefa específica do seu jeito. O agent só carrega a skill quando ela é relevante.</p>
+            <p class="term__example"><strong>Exemplo:</strong> A skill grill-me faz o agent entrevistar você sobre um plano antes de começar a programar.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-subagent" data-category="agents" data-search="subagent um agent especializado que o agent principal chama para uma tarefa específica. ele trabalha com seu próprio contexto e instruções e devolve só o resultado, mantendo a conversa principal enxuta. o agent web-pending-change-auditor deste hub é um subagent de code review. agents e ferramentas">
+          <dt><dfn>Subagent</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Agents e ferramentas</span>
+            <p>Um agent especializado que o agent principal chama para uma tarefa específica. Ele trabalha com seu próprio contexto e instruções e devolve só o resultado, mantendo a conversa principal enxuta.</p>
+            <p class="term__example"><strong>Exemplo:</strong> O agent web-pending-change-auditor deste hub é um subagent de code review.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-temperature" data-category="models" data-search="temperature (ai temperature) configuração que controla o quanto a resposta é previsível ou criativa. temperature baixa dá respostas mais consistentes; alta dá respostas mais variadas (e mais arriscadas). para gerar código, use temperature baixa; para ideias de nomes de produto, uma mais alta. modelos">
+          <dt><dfn>Temperature (AI Temperature)</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Modelos</span>
+            <p>Configuração que controla o quanto a resposta é previsível ou criativa. Temperature baixa dá respostas mais consistentes; alta dá respostas mais variadas (e mais arriscadas).</p>
+            <p class="term__example"><strong>Exemplo:</strong> Para gerar código, use temperature baixa; para ideias de nomes de produto, uma mais alta.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-token" data-category="basics" data-search="token o pedacinho de texto que o modelo lê e escreve: pode ser uma palavra, parte de uma palavra ou um sinal de pontuação. limites e preços das ias são contados em tokens. “desenvolvimento” pode virar 3 ou 4 tokens; em português, 1 token fica em média em torno de 3 a 4 caracteres. fundamentos">
+          <dt><dfn>Token</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Fundamentos</span>
+            <p>O pedacinho de texto que o modelo lê e escreve: pode ser uma palavra, parte de uma palavra ou um sinal de pontuação. Limites e preços das IAs são contados em tokens.</p>
+            <p class="term__example"><strong>Exemplo:</strong> “Desenvolvimento” pode virar 3 ou 4 tokens; em português, 1 token fica em média em torno de 3 a 4 caracteres.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-tool-use" data-category="agents" data-search="tool use / function calling capacidade do modelo de pedir a execução de uma ferramenta ou função externa (buscar na web, consultar uma api, ler um arquivo) e usar o resultado na resposta. o modelo chama `get_weather(&quot;são paulo&quot;)` em vez de chutar a previsão do tempo. agents e ferramentas">
+          <dt><dfn>Tool use / Function calling</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Agents e ferramentas</span>
+            <p>Capacidade do modelo de pedir a execução de uma ferramenta ou função externa (buscar na web, consultar uma API, ler um arquivo) e usar o resultado na resposta.</p>
+            <p class="term__example"><strong>Exemplo:</strong> O modelo chama <code>get_weather(&quot;São Paulo&quot;)</code> em vez de chutar a previsão do tempo.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-transformer" data-category="models" data-search="transformer model a arquitetura de rede neural por trás de quase todos os llms atuais. a ideia central (“attention”) permite que o modelo olhe para todas as partes do texto ao mesmo tempo e entenda quais palavras se relacionam. modelos">
+          <dt><dfn>Transformer Model</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Modelos</span>
+            <p>A arquitetura de rede neural por trás de quase todos os LLMs atuais. A ideia central (“attention”) permite que o modelo olhe para todas as partes do texto ao mesmo tempo e entenda quais palavras se relacionam.</p>
+          </dd>
+        </div>
+        <div class="term" id="termo-vector-database" data-category="data" data-search="vector database banco de dados feito para guardar embeddings e encontrar rapidamente os mais parecidos com uma busca. é uma peça comum em sistemas de rag. pgvector (postgresql), qdrant, pinecone e azure ai search. dados e rag">
+          <dt><dfn>Vector database</dfn></dt>
+          <dd>
+            <span class="badge term__cat">Dados e RAG</span>
+            <p>Banco de dados feito para guardar embeddings e encontrar rapidamente os mais parecidos com uma busca. É uma peça comum em sistemas de RAG.</p>
+            <p class="term__example"><strong>Exemplo:</strong> pgvector (PostgreSQL), Qdrant, Pinecone e Azure AI Search.</p>
+          </dd>
+        </div>
+      </dl>
+      <p class="empty" id="glossary-empty" hidden>Nenhum termo encontrado. Tente outra palavra ou escolha “Todos”.</p>
+      <!-- GLOSSARY:END -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section accordion" id="como-instalar" aria-labelledby="como-instalar-title" data-accordion="open">
+    <div class="container">
+      <h2 class="accordion__heading" id="como-instalar-title" data-accordion-heading>Como instalar</h2>
+      <div class="accordion__panel" id="como-instalar-conteudo">
+      <p class="section__lead">Escolha a sua ferramenta. O instalador mostra tudo o que vai fazer e pede confirmação antes de mudar qualquer coisa. O passo a passo completo está no <a href="https://github.com/dev-cristhian/ai-toolkit#install-guides" data-url="readme-install">README</a>.</p>
+      <!-- INSTALL:START -->
+      <div class="tabs" data-tabs>
+        <div class="tabs__list" role="tablist" aria-label="Ferramenta" hidden>
+          <button type="button" class="tabs__tab" role="tab" id="tab-claude" aria-controls="painel-claude" aria-selected="true" tabindex="0">Claude Code</button>
+          <button type="button" class="tabs__tab" role="tab" id="tab-cursor" aria-controls="painel-cursor" aria-selected="false" tabindex="-1">Cursor</button>
+          <button type="button" class="tabs__tab" role="tab" id="tab-codex" aria-controls="painel-codex" aria-selected="false" tabindex="-1">Codex</button>
+          <button type="button" class="tabs__tab" role="tab" id="tab-copilot" aria-controls="painel-copilot" aria-selected="false" tabindex="-1">VS Code + Copilot</button>
+        </div>
+        <section class="tab-panel" id="painel-claude" aria-labelledby="tab-claude painel-claude-titulo">
+          <h3 class="tab-panel__title" id="painel-claude-titulo">Claude Code</h3>
+          <p><strong>Pré-requisitos:</strong> Node.js 22.20 ou mais recente, Git e o Claude Code instalado (o comando <code>claude</code> precisa estar no PATH para registrar os MCPs).</p>
+          <div class="cmd">
+            <span class="cmd__label">macOS e Linux</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --target claude</code></pre>
+              <button type="button" class="btn-copy" data-copy="curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --target claude"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Claude Code no macOS e Linux</span></button>
+            </div>
+          </div>
+          <div class="cmd">
+            <span class="cmd__label">Windows (PowerShell)</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --target claude</code></pre>
+              <button type="button" class="btn-copy" data-copy="&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --target claude"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Claude Code no Windows</span></button>
+            </div>
+          </div>
+          <h4>Onde cada item é instalado</h4>
+          <dl>
+            <dt>Skills</dt><dd><code>~/.claude/skills/</code> (atalho para a cópia em <code>~/.agents/skills/</code>)</dd>
+            <dt>Agents</dt><dd><code>~/.claude/agents/</code></dd>
+            <dt>MCPs</dt><dd><code>~/.claude.json</code> (via <code>claude mcp add --scope user</code>)</dd>
+          </dl>
+          <p><strong>Como conferir:</strong> Abra uma nova sessão do Claude Code: <code>/agents</code> lista os agents, <code>/mcp</code> mostra os MCPs e você pode perguntar “quais skills você tem?”.</p>
+          <p class="note">No app do Claude (claude.ai), as skills podem ser enviadas como .zip em Configurações → Capabilities → Skills.</p>
+        </section>
+        <section class="tab-panel" id="painel-cursor" aria-labelledby="tab-cursor painel-cursor-titulo">
+          <h3 class="tab-panel__title" id="painel-cursor-titulo">Cursor</h3>
+          <p><strong>Pré-requisitos:</strong> Node.js 22.20 ou mais recente, Git e o Cursor instalado.</p>
+          <div class="cmd">
+            <span class="cmd__label">macOS e Linux</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --target cursor</code></pre>
+              <button type="button" class="btn-copy" data-copy="curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --target cursor"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Cursor no macOS e Linux</span></button>
+            </div>
+          </div>
+          <div class="cmd">
+            <span class="cmd__label">Windows (PowerShell)</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --target cursor</code></pre>
+              <button type="button" class="btn-copy" data-copy="&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --target cursor"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Cursor no Windows</span></button>
+            </div>
+          </div>
+          <h4>Onde cada item é instalado</h4>
+          <dl>
+            <dt>Skills</dt><dd><code>~/.agents/skills/</code> (pasta compartilhada que o Cursor lê direto)</dd>
+            <dt>Agents</dt><dd><code>~/.cursor/agents/</code></dd>
+            <dt>MCPs</dt><dd><code>~/.cursor/mcp.json</code></dd>
+          </dl>
+          <p><strong>Como conferir:</strong> Reinicie o Cursor e abra <strong>Cursor Settings → MCP</strong> para ver os servidores. As skills e os agents aparecem no chat do agent.</p>
+        </section>
+        <section class="tab-panel" id="painel-codex" aria-labelledby="tab-codex painel-codex-titulo">
+          <h3 class="tab-panel__title" id="painel-codex-titulo">Codex</h3>
+          <p><strong>Pré-requisitos:</strong> Node.js 22.20 ou mais recente, Git e o OpenAI Codex (CLI, app ou extensão).</p>
+          <div class="cmd">
+            <span class="cmd__label">macOS e Linux</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --target codex</code></pre>
+              <button type="button" class="btn-copy" data-copy="curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --target codex"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Codex no macOS e Linux</span></button>
+            </div>
+          </div>
+          <div class="cmd">
+            <span class="cmd__label">Windows (PowerShell)</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --target codex</code></pre>
+              <button type="button" class="btn-copy" data-copy="&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --target codex"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Codex no Windows</span></button>
+            </div>
+          </div>
+          <h4>Onde cada item é instalado</h4>
+          <dl>
+            <dt>Skills</dt><dd><code>~/.agents/skills/</code> (pasta compartilhada que o Codex lê direto)</dd>
+            <dt>Agents</dt><dd><code>~/.codex/agents/*.toml</code> (convertidos automaticamente de Markdown para TOML)</dd>
+            <dt>MCPs</dt><dd><code>~/.codex/config.toml</code></dd>
+          </dl>
+          <p><strong>Como conferir:</strong> Rode <code>codex mcp list</code> para ver os MCPs e, numa nova sessão, peça ao Codex para listar as skills disponíveis.</p>
+        </section>
+        <section class="tab-panel" id="painel-copilot" aria-labelledby="tab-copilot painel-copilot-titulo">
+          <h3 class="tab-panel__title" id="painel-copilot-titulo">VS Code + Copilot</h3>
+          <p><strong>Pré-requisitos:</strong> Node.js 22.20 ou mais recente, Git, VS Code e a extensão do GitHub Copilot.</p>
+          <div class="cmd">
+            <span class="cmd__label">macOS e Linux</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --target copilot</code></pre>
+              <button type="button" class="btn-copy" data-copy="curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --target copilot"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para VS Code + Copilot no macOS e Linux</span></button>
+            </div>
+          </div>
+          <div class="cmd">
+            <span class="cmd__label">Windows (PowerShell)</span>
+            <div class="cmd__row">
+              <pre tabindex="0"><code>&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --target copilot</code></pre>
+              <button type="button" class="btn-copy" data-copy="&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --target copilot"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para VS Code + Copilot no Windows</span></button>
+            </div>
+          </div>
+          <h4>Onde cada item é instalado</h4>
+          <dl>
+            <dt>Skills</dt><dd><code>~/.agents/skills/</code> (pasta compartilhada que o Copilot lê direto)</dd>
+            <dt>Agents</dt><dd><code>~/.copilot/agents/*.agent.md</code></dd>
+            <dt>MCPs</dt><dd><code>~/.copilot/mcp-config.json</code></dd>
+          </dl>
+          <p><strong>Como conferir:</strong> Recarregue o VS Code. No Chat, abra o seletor de agents para ver os agents; o comando <strong>MCP: List Servers</strong> mostra os MCPs.</p>
+        </section>
+      </div>
+      <p class="note">Opções úteis: <code>--level 1</code>, <code>--type mcp</code>, <code>--only own</code>, <code>--id grill-me</code>, <code>--scope project</code> (instala só na pasta atual), <code>--dry-run</code> e <code>--yes</code>. Para MCPs de terceiros, o instalador sempre lista os comandos e URLs antes de registrar.</p>
+      <!-- INSTALL:END -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface accordion" id="catalogo" aria-labelledby="catalogo-title" data-accordion="open">
+    <div class="container">
+      <h2 class="accordion__heading" id="catalogo-title" data-accordion-heading>Catálogo</h2>
+      <div class="accordion__panel" id="catalogo-conteudo">
+      <p class="section__lead">Organizado em três níveis. Em cada nível, <strong>Meus itens</strong> são mantidos neste repositório e <strong>Recomendações</strong> apontam para o repositório original de cada autor (nada é copiado).</p>
+      <!-- CATALOG:START -->
+      <nav aria-label="Níveis do catálogo">
+        <ul class="level__nav">
+          <li><a href="#nivel-1">Nível 1: Metodologia</a></li>
+          <li><a href="#nivel-2">Nível 2: Desenvolvimento</a></li>
+          <li><a href="#nivel-3">Nível 3: QA e Negócio</a></li>
+        </ul>
+      </nav>
+      <div class="toolbar" data-catalog-toolbar hidden>
+        <div class="field">
+          <label for="catalog-search">Buscar no catálogo</label>
+          <input type="search" id="catalog-search" placeholder="Ex.: angular, testes, planejamento" autocomplete="off" aria-describedby="catalog-count">
+        </div>
+        <fieldset class="chips">
+          <legend>Tipo</legend>
+          <button type="button" class="chip" data-catalog-type="" aria-pressed="true">Todos</button>
+          <button type="button" class="chip" data-catalog-type="skill" aria-pressed="false">Skills</button>
+          <button type="button" class="chip" data-catalog-type="agent" aria-pressed="false">Agents</button>
+          <button type="button" class="chip" data-catalog-type="mcp" aria-pressed="false">MCPs</button>
+        </fieldset>
+      </div>
+      <p class="results-count" id="catalog-count" data-total="21">21 itens</p>
+      <section class="level" id="nivel-1" aria-labelledby="nivel-1-titulo">
+        <div class="level__header">
+          <span class="level__number" aria-hidden="true">1</span>
+          <h3 id="nivel-1-titulo">Nível 1: Metodologia</h3>
+        </div>
+        <p class="section__lead">Jeitos gerais de trabalhar com IA: esclarecer ideias, fazer brainstorming e planejar antes de escrever código.</p>
+        <div class="group" data-group>
+          <h4 id="nivel-1-meus">Meus itens <span class="results-count" data-group-count>(0)</span></h4>
+          <p class="empty">Em breve: ainda não há itens próprios neste nível.</p>
+        </div>
+        <div class="group" data-group>
+          <h4 id="nivel-1-recomendados">Recomendações <span class="results-count" data-group-count>(3)</span></h4>
+          <ul class="cards" role="list">
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="brainstorming brainstorming transforma uma ideia ainda crua em um design validado, com um diálogo de uma pergunta por vez antes da implementação. obra planning design skill">
+              <article class="card" aria-labelledby="item-brainstorming">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-brainstorming">brainstorming</h5>
+                <p class="card__desc">Transforma uma ideia ainda crua em um design validado, com um diálogo de uma pergunta por vez antes da implementação.</p>
+                <p class="card__author">Autor: obra · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/obra/superpowers --skill brainstorming</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/obra/superpowers --skill brainstorming"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de brainstorming</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/obra/superpowers/tree/HEAD/skills/brainstorming">Ver fonte<span class="visually-hidden"> de brainstorming</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="grill-me grill-me faz uma bateria de perguntas sobre o seu plano ou design até resolver cada decisão em aberto, antes de qualquer código. mattpocock planning requirements skill">
+              <article class="card" aria-labelledby="item-grill-me">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-grill-me">grill-me</h5>
+                <p class="card__desc">Faz uma bateria de perguntas sobre o seu plano ou design até resolver cada decisão em aberto, antes de qualquer código.</p>
+                <p class="card__author">Autor: mattpocock · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/mattpocock/skills --skill grill-me</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/mattpocock/skills --skill grill-me"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de grill-me</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/mattpocock/skills/tree/HEAD/skills/productivity/grill-me">Ver fonte<span class="visually-hidden"> de grill-me</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="writing-plans writing-plans escreve planos de implementação detalhados, passo a passo, que um agent (ou uma pessoa do time) consegue executar com pouco contexto. obra planning skill">
+              <article class="card" aria-labelledby="item-writing-plans">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-writing-plans">writing-plans</h5>
+                <p class="card__desc">Escreve planos de implementação detalhados, passo a passo, que um agent (ou uma pessoa do time) consegue executar com pouco contexto.</p>
+                <p class="card__author">Autor: obra · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/obra/superpowers --skill writing-plans</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/obra/superpowers --skill writing-plans"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de writing-plans</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/obra/superpowers/tree/HEAD/skills/writing-plans">Ver fonte<span class="visually-hidden"> de writing-plans</span></a>
+              </article>
+            </li>
+          </ul>
+          <p class="empty" data-filter-empty hidden>Nenhum item deste grupo corresponde aos filtros.</p>
+        </div>
+      </section>
+      <section class="level" id="nivel-2" aria-labelledby="nivel-2-titulo">
+        <div class="level__header">
+          <span class="level__number" aria-hidden="true">2</span>
+          <h3 id="nivel-2-titulo">Nível 2: Desenvolvimento</h3>
+        </div>
+        <p class="section__lead">Engenharia de software do dia a dia: frameworks, documentação atualizada, performance e qualidade de interface.</p>
+        <div class="group" data-group>
+          <h4 id="nivel-2-meus">Meus itens <span class="results-count" data-group-count>(2)</span></h4>
+          <ul class="cards" role="list">
+            <li class="card-item" data-type="skill" data-origin="own" data-search="web-design-guidelines web-design-guidelines cria, melhora ou audita interfaces web com foco em acessibilidade (wcag), responsividade, ux, lighthouse e seo. funciona com html/css/js puro, angular, react e asp.net core mvc/razor. dev-cristhian frontend accessibility ux seo lighthouse skill">
+              <article class="card" aria-labelledby="item-web-design-guidelines">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                  <span class="badge badge--own">Meu item</span>
+                </div>
+                <h5 class="card__title" id="item-web-design-guidelines">web-design-guidelines</h5>
+                <p class="card__desc">Cria, melhora ou audita interfaces web com foco em acessibilidade (WCAG), responsividade, UX, Lighthouse e SEO. Funciona com HTML/CSS/JS puro, Angular, React e ASP.NET Core MVC/Razor.</p>
+                <p class="card__author">Autor: dev-cristhian · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/dev-cristhian/ai-toolkit --skill web-design-guidelines</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/dev-cristhian/ai-toolkit --skill web-design-guidelines"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de web-design-guidelines</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/dev-cristhian/ai-toolkit/tree/HEAD/skills/web-design-guidelines">Ver fonte<span class="visually-hidden"> de web-design-guidelines</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="agent" data-origin="own" data-search="web-pending-change-auditor web-pending-change-auditor agent de code review somente leitura: audita as mudanças pendentes (git ou tfvc/tfs) de projetos web em html/css/js, node, angular, react e asp.net mvc/razor, usando a skill web-design-guidelines como referência. dev-cristhian code-review frontend accessibility git tfvc agent">
+              <article class="card" aria-labelledby="item-web-pending-change-auditor">
+                <div class="card__meta">
+                  <span class="badge">Agent</span>
+                  <span class="badge badge--own">Meu item</span>
+                </div>
+                <h5 class="card__title" id="item-web-pending-change-auditor">web-pending-change-auditor</h5>
+                <p class="card__desc">Agent de code review somente leitura: audita as mudanças pendentes (Git ou TFVC/TFS) de projetos web em HTML/CSS/JS, Node, Angular, React e ASP.NET MVC/Razor, usando a skill web-design-guidelines como referência.</p>
+                <p class="card__author">Autor: dev-cristhian · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --id web-pending-change-auditor</code></pre>
+                    <button type="button" class="btn-copy" data-copy="curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --id web-pending-change-auditor"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de web-pending-change-auditor</span></button>
+                  </div>
+                </div>
+                <details>
+                  <summary>Comando para Windows</summary>
+                  <div class="cmd">
+                    <span class="cmd__label">Windows (PowerShell)</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --id web-pending-change-auditor</code></pre>
+                      <button type="button" class="btn-copy" data-copy="&amp; ([scriptblock]::Create((irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1))) --id web-pending-change-auditor"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> de web-pending-change-auditor no Windows</span></button>
+                    </div>
+                  </div>
+                </details>
+                <p class="card__author">Instala junto: web-design-guidelines</p>
+                <a class="card__link" href="https://github.com/dev-cristhian/ai-toolkit/tree/HEAD/agents/web-pending-change-auditor.md">Ver fonte<span class="visually-hidden"> de web-pending-change-auditor</span></a>
+              </article>
+            </li>
+          </ul>
+          <p class="empty" data-filter-empty hidden>Nenhum item deste grupo corresponde aos filtros.</p>
+        </div>
+        <div class="group" data-group>
+          <h4 id="nivel-2-recomendados">Recomendações <span class="results-count" data-group-count>(8)</span></h4>
+          <ul class="cards" role="list">
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="analyzing-dotnet-performance analyzing-dotnet-performance procura cerca de 50 anti-patterns de performance em código .net (async, memória, strings, linq, regex, serialização, i/o) e classifica por gravidade. dotnet dotnet performance diagnostics skill">
+              <article class="card" aria-labelledby="item-analyzing-dotnet-performance">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-analyzing-dotnet-performance">analyzing-dotnet-performance</h5>
+                <p class="card__desc">Procura cerca de 50 anti-patterns de performance em código .NET (async, memória, strings, LINQ, regex, serialização, I/O) e classifica por gravidade.</p>
+                <p class="card__author">Autor: dotnet · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/dotnet/skills --skill analyzing-dotnet-performance</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/dotnet/skills --skill analyzing-dotnet-performance"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de analyzing-dotnet-performance</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/dotnet/skills/tree/HEAD/plugins/dotnet-diag/skills/analyzing-dotnet-performance">Ver fonte<span class="visually-hidden"> de analyzing-dotnet-performance</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="angular-developer angular-developer skill oficial do time do angular para escrever angular moderno (signals, standalone components, apis atuais). angular angular frontend skill">
+              <article class="card" aria-labelledby="item-angular-developer">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-angular-developer">angular-developer</h5>
+                <p class="card__desc">Skill oficial do time do Angular para escrever Angular moderno (signals, standalone components, APIs atuais).</p>
+                <p class="card__author">Autor: angular · Licença: Not specified</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/angular/skills --skill angular-developer</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/angular/skills --skill angular-developer"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de angular-developer</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/angular/skills/tree/HEAD/angular-developer">Ver fonte<span class="visually-hidden"> de angular-developer</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="dotnet-webapi dotnet-webapi orienta a criação e a alteração de endpoints em asp.net core web api com semântica http correta, metadados openapi e tratamento de erros. dotnet dotnet aspnetcore api skill">
+              <article class="card" aria-labelledby="item-dotnet-webapi">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-dotnet-webapi">dotnet-webapi</h5>
+                <p class="card__desc">Orienta a criação e a alteração de endpoints em ASP.NET Core Web API com semântica HTTP correta, metadados OpenAPI e tratamento de erros.</p>
+                <p class="card__author">Autor: dotnet · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/dotnet/skills --skill dotnet-webapi</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/dotnet/skills --skill dotnet-webapi"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de dotnet-webapi</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/dotnet/skills/tree/HEAD/plugins/dotnet-aspnetcore/skills/dotnet-webapi">Ver fonte<span class="visually-hidden"> de dotnet-webapi</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="frontend-design frontend-design orienta um design visual marcante e intencional ao criar ou repaginar uma interface: direção estética, tipografia e escolhas que fogem do visual de template. anthropics frontend design ui skill">
+              <article class="card" aria-labelledby="item-frontend-design">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-frontend-design">frontend-design</h5>
+                <p class="card__desc">Orienta um design visual marcante e intencional ao criar ou repaginar uma interface: direção estética, tipografia e escolhas que fogem do visual de template.</p>
+                <p class="card__author">Autor: anthropics · Licença: Apache-2.0</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/anthropics/skills --skill frontend-design</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/anthropics/skills --skill frontend-design"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de frontend-design</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/anthropics/skills/tree/HEAD/skills/frontend-design">Ver fonte<span class="visually-hidden"> de frontend-design</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="optimizing-ef-core-queries optimizing-ef-core-queries revisa e otimiza o acesso a dados com entity framework core: queries lentas ou pesadas, idas e voltas demais ao banco e savechanges escondidos. dotnet dotnet efcore performance skill">
+              <article class="card" aria-labelledby="item-optimizing-ef-core-queries">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-optimizing-ef-core-queries">optimizing-ef-core-queries</h5>
+                <p class="card__desc">Revisa e otimiza o acesso a dados com Entity Framework Core: queries lentas ou pesadas, idas e voltas demais ao banco e SaveChanges escondidos.</p>
+                <p class="card__author">Autor: dotnet · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/dotnet/skills --skill optimizing-ef-core-queries</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/dotnet/skills --skill optimizing-ef-core-queries"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de optimizing-ef-core-queries</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/dotnet/skills/tree/HEAD/plugins/dotnet-data/skills/optimizing-ef-core-queries">Ver fonte<span class="visually-hidden"> de optimizing-ef-core-queries</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="mcp" data-origin="recommended" data-search="angular cli mcp server angular-cli-mcp mcp oficial da angular cli: boas práticas, busca na documentação, exemplos e ferramentas que entendem o seu workspace angular. angular angular frontend docs mcp">
+              <article class="card" aria-labelledby="item-angular-cli-mcp">
+                <div class="card__meta">
+                  <span class="badge">MCP</span>
+                </div>
+                <h5 class="card__title" id="item-angular-cli-mcp">Angular CLI MCP Server</h5>
+                <p class="card__desc">MCP oficial da Angular CLI: boas práticas, busca na documentação, exemplos e ferramentas que entendem o seu workspace Angular.</p>
+                <p class="card__author">Autor: angular · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar no Claude Code</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>claude mcp add --scope user angular-cli -- npx -y @angular/cli mcp</code></pre>
+                    <button type="button" class="btn-copy" data-copy="claude mcp add --scope user angular-cli -- npx -y @angular/cli mcp"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de Angular CLI MCP Server</span></button>
+                  </div>
+                </div>
+                <details>
+                  <summary>Comandos para outras ferramentas</summary>
+                  <div class="cmd">
+                    <span class="cmd__label">Codex</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>codex mcp add angular-cli -- npx -y @angular/cli mcp</code></pre>
+                      <button type="button" class="btn-copy" data-copy="codex mcp add angular-cli -- npx -y @angular/cli mcp"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Angular CLI MCP Server no Codex</span></button>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <span class="cmd__label">VS Code + Copilot</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>code --add-mcp '{&quot;name&quot;:&quot;angular-cli&quot;,&quot;type&quot;:&quot;stdio&quot;,&quot;command&quot;:&quot;npx&quot;,&quot;args&quot;:[&quot;-y&quot;,&quot;@angular/cli&quot;,&quot;mcp&quot;]}'</code></pre>
+                      <button type="button" class="btn-copy" data-copy="code --add-mcp '{&quot;name&quot;:&quot;angular-cli&quot;,&quot;type&quot;:&quot;stdio&quot;,&quot;command&quot;:&quot;npx&quot;,&quot;args&quot;:[&quot;-y&quot;,&quot;@angular/cli&quot;,&quot;mcp&quot;]}'"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Angular CLI MCP Server no VS Code</span></button>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <span class="cmd__label">Cursor (~/.cursor/mcp.json)</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>{
+                    &quot;mcpServers&quot;: {
+                      &quot;angular-cli&quot;: {
+                        &quot;command&quot;: &quot;npx&quot;,
+                        &quot;args&quot;: [
+                          &quot;-y&quot;,
+                          &quot;@angular/cli&quot;,
+                          &quot;mcp&quot;
+                        ]
+                      }
+                    }
+                  }</code></pre>
+                      <button type="button" class="btn-copy" data-copy="{
+                    &quot;mcpServers&quot;: {
+                      &quot;angular-cli&quot;: {
+                        &quot;command&quot;: &quot;npx&quot;,
+                        &quot;args&quot;: [
+                          &quot;-y&quot;,
+                          &quot;@angular/cli&quot;,
+                          &quot;mcp&quot;
+                        ]
+                      }
+                    }
+                  }"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Angular CLI MCP Server no Cursor</span></button>
+                    </div>
+                  </div>
+                </details>
+                <a class="card__link" href="https://github.com/angular/angular-cli">Ver fonte<span class="visually-hidden"> de Angular CLI MCP Server</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="mcp" data-origin="recommended" data-search="context7 mcp server context7-mcp coloca no prompt a documentação atualizada (e da versão certa) das bibliotecas que você usa. funciona sem api key; defina context7_api_key para limites maiores. upstash docs libraries mcp">
+              <article class="card" aria-labelledby="item-context7-mcp">
+                <div class="card__meta">
+                  <span class="badge">MCP</span>
+                </div>
+                <h5 class="card__title" id="item-context7-mcp">Context7 MCP Server</h5>
+                <p class="card__desc">Coloca no prompt a documentação atualizada (e da versão certa) das bibliotecas que você usa. Funciona sem API key; defina CONTEXT7_API_KEY para limites maiores.</p>
+                <p class="card__author">Autor: upstash · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar no Claude Code</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>claude mcp add --scope user --transport http context7 https://mcp.context7.com/mcp</code></pre>
+                    <button type="button" class="btn-copy" data-copy="claude mcp add --scope user --transport http context7 https://mcp.context7.com/mcp"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de Context7 MCP Server</span></button>
+                  </div>
+                </div>
+                <details>
+                  <summary>Comandos para outras ferramentas</summary>
+                  <div class="cmd">
+                    <span class="cmd__label">Codex</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>codex mcp add context7 --url https://mcp.context7.com/mcp</code></pre>
+                      <button type="button" class="btn-copy" data-copy="codex mcp add context7 --url https://mcp.context7.com/mcp"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Context7 MCP Server no Codex</span></button>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <span class="cmd__label">VS Code + Copilot</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>code --add-mcp '{&quot;name&quot;:&quot;context7&quot;,&quot;type&quot;:&quot;http&quot;,&quot;url&quot;:&quot;https://mcp.context7.com/mcp&quot;}'</code></pre>
+                      <button type="button" class="btn-copy" data-copy="code --add-mcp '{&quot;name&quot;:&quot;context7&quot;,&quot;type&quot;:&quot;http&quot;,&quot;url&quot;:&quot;https://mcp.context7.com/mcp&quot;}'"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Context7 MCP Server no VS Code</span></button>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <span class="cmd__label">Cursor (~/.cursor/mcp.json)</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>{
+                    &quot;mcpServers&quot;: {
+                      &quot;context7&quot;: {
+                        &quot;url&quot;: &quot;https://mcp.context7.com/mcp&quot;
+                      }
+                    }
+                  }</code></pre>
+                      <button type="button" class="btn-copy" data-copy="{
+                    &quot;mcpServers&quot;: {
+                      &quot;context7&quot;: {
+                        &quot;url&quot;: &quot;https://mcp.context7.com/mcp&quot;
+                      }
+                    }
+                  }"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Context7 MCP Server no Cursor</span></button>
+                    </div>
+                  </div>
+                  <p class="card__author">API key opcional: defina a variável de ambiente <code>CONTEXT7_API_KEY</code> antes de rodar o instalador do hub.</p>
+                </details>
+                <a class="card__link" href="https://github.com/upstash/context7">Ver fonte<span class="visually-hidden"> de Context7 MCP Server</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="mcp" data-origin="recommended" data-search="microsoft learn mcp server microsoft-learn-mcp mcp remoto que busca a documentação oficial e atualizada do microsoft learn (.net, azure etc.) e exemplos de código. não exige login. microsoft dotnet azure docs mcp">
+              <article class="card" aria-labelledby="item-microsoft-learn-mcp">
+                <div class="card__meta">
+                  <span class="badge">MCP</span>
+                </div>
+                <h5 class="card__title" id="item-microsoft-learn-mcp">Microsoft Learn MCP Server</h5>
+                <p class="card__desc">MCP remoto que busca a documentação oficial e atualizada do Microsoft Learn (.NET, Azure etc.) e exemplos de código. Não exige login.</p>
+                <p class="card__author">Autor: microsoft · Licença: CC-BY-4.0</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar no Claude Code</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>claude mcp add --scope user --transport http microsoft-learn https://learn.microsoft.com/api/mcp</code></pre>
+                    <button type="button" class="btn-copy" data-copy="claude mcp add --scope user --transport http microsoft-learn https://learn.microsoft.com/api/mcp"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de Microsoft Learn MCP Server</span></button>
+                  </div>
+                </div>
+                <details>
+                  <summary>Comandos para outras ferramentas</summary>
+                  <div class="cmd">
+                    <span class="cmd__label">Codex</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>codex mcp add microsoft-learn --url https://learn.microsoft.com/api/mcp</code></pre>
+                      <button type="button" class="btn-copy" data-copy="codex mcp add microsoft-learn --url https://learn.microsoft.com/api/mcp"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Microsoft Learn MCP Server no Codex</span></button>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <span class="cmd__label">VS Code + Copilot</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>code --add-mcp '{&quot;name&quot;:&quot;microsoft-learn&quot;,&quot;type&quot;:&quot;http&quot;,&quot;url&quot;:&quot;https://learn.microsoft.com/api/mcp&quot;}'</code></pre>
+                      <button type="button" class="btn-copy" data-copy="code --add-mcp '{&quot;name&quot;:&quot;microsoft-learn&quot;,&quot;type&quot;:&quot;http&quot;,&quot;url&quot;:&quot;https://learn.microsoft.com/api/mcp&quot;}'"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Microsoft Learn MCP Server no VS Code</span></button>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <span class="cmd__label">Cursor (~/.cursor/mcp.json)</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>{
+                    &quot;mcpServers&quot;: {
+                      &quot;microsoft-learn&quot;: {
+                        &quot;url&quot;: &quot;https://learn.microsoft.com/api/mcp&quot;
+                      }
+                    }
+                  }</code></pre>
+                      <button type="button" class="btn-copy" data-copy="{
+                    &quot;mcpServers&quot;: {
+                      &quot;microsoft-learn&quot;: {
+                        &quot;url&quot;: &quot;https://learn.microsoft.com/api/mcp&quot;
+                      }
+                    }
+                  }"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Microsoft Learn MCP Server no Cursor</span></button>
+                    </div>
+                  </div>
+                </details>
+                <a class="card__link" href="https://github.com/MicrosoftDocs/mcp">Ver fonte<span class="visually-hidden"> de Microsoft Learn MCP Server</span></a>
+              </article>
+            </li>
+          </ul>
+          <p class="empty" data-filter-empty hidden>Nenhum item deste grupo corresponde aos filtros.</p>
+        </div>
+      </section>
+      <section class="level" id="nivel-3" aria-labelledby="nivel-3-titulo">
+        <div class="level__header">
+          <span class="level__number" aria-hidden="true">3</span>
+          <h3 id="nivel-3-titulo">Nível 3: QA e Negócio</h3>
+        </div>
+        <p class="section__lead">Testes, discovery de produto, requisitos, specs e tickets.</p>
+        <div class="group" data-group>
+          <h4 id="nivel-3-meus">Meus itens <span class="results-count" data-group-count>(0)</span></h4>
+          <p class="empty">Em breve: ainda não há itens próprios neste nível.</p>
+        </div>
+        <div class="group" data-group>
+          <h4 id="nivel-3-recomendados">Recomendações <span class="results-count" data-group-count>(8)</span></h4>
+          <ul class="cards" role="list">
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="discovery-process discovery-process conduz um processo completo de discovery de produto, do enquadramento do problema até oportunidades validadas. deanpeters product discovery skill">
+              <article class="card" aria-labelledby="item-discovery-process">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-discovery-process">discovery-process</h5>
+                <p class="card__desc">Conduz um processo completo de discovery de produto, do enquadramento do problema até oportunidades validadas.</p>
+                <p class="card__author">Autor: deanpeters · Licença: CC-BY-NC-SA-4.0</p>
+                <p class="note">Licença não comercial: o uso em trabalho remunerado ou produto comercial depende de autorização do autor.</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill discovery-process</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill discovery-process"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de discovery-process</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/deanpeters/Product-Manager-Skills/tree/HEAD/skills/discovery-process">Ver fonte<span class="visually-hidden"> de discovery-process</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="playwright-generate-test playwright-generate-test gera testes playwright a partir de um cenário, explorando a aplicação com o playwright mcp antes de escrever o teste. github testing e2e playwright skill">
+              <article class="card" aria-labelledby="item-playwright-generate-test">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-playwright-generate-test">playwright-generate-test</h5>
+                <p class="card__desc">Gera testes Playwright a partir de um cenário, explorando a aplicação com o Playwright MCP antes de escrever o teste.</p>
+                <p class="card__author">Autor: github · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/github/awesome-copilot --skill playwright-generate-test</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/github/awesome-copilot --skill playwright-generate-test"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de playwright-generate-test</span></button>
+                  </div>
+                </div>
+                <p class="card__author">Instala junto: playwright-mcp</p>
+                <a class="card__link" href="https://github.com/github/awesome-copilot/tree/HEAD/skills/playwright-generate-test">Ver fonte<span class="visually-hidden"> de playwright-generate-test</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="prd-development prd-development ajuda a escrever um prd (product requirements document) estruturado. deanpeters product requirements skill">
+              <article class="card" aria-labelledby="item-prd-development">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-prd-development">prd-development</h5>
+                <p class="card__desc">Ajuda a escrever um PRD (Product Requirements Document) estruturado.</p>
+                <p class="card__author">Autor: deanpeters · Licença: CC-BY-NC-SA-4.0</p>
+                <p class="note">Licença não comercial: o uso em trabalho remunerado ou produto comercial depende de autorização do autor.</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill prd-development</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill prd-development"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de prd-development</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/deanpeters/Product-Manager-Skills/tree/HEAD/skills/prd-development">Ver fonte<span class="visually-hidden"> de prd-development</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="to-spec to-spec transforma a conversa atual em uma spec e publica no issue tracker do projeto, sem nova rodada de perguntas. mattpocock requirements spec skill">
+              <article class="card" aria-labelledby="item-to-spec">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-to-spec">to-spec</h5>
+                <p class="card__desc">Transforma a conversa atual em uma spec e publica no issue tracker do projeto, sem nova rodada de perguntas.</p>
+                <p class="card__author">Autor: mattpocock · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/mattpocock/skills --skill to-spec</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/mattpocock/skills --skill to-spec"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de to-spec</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/mattpocock/skills/tree/HEAD/skills/engineering/to-spec">Ver fonte<span class="visually-hidden"> de to-spec</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="to-tickets to-tickets quebra um plano, uma spec ou a conversa em tickets (tracer bullets) com as dependências entre eles e publica no seu tracker. mattpocock planning tickets skill">
+              <article class="card" aria-labelledby="item-to-tickets">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-to-tickets">to-tickets</h5>
+                <p class="card__desc">Quebra um plano, uma spec ou a conversa em tickets (tracer bullets) com as dependências entre eles e publica no seu tracker.</p>
+                <p class="card__author">Autor: mattpocock · Licença: MIT</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/mattpocock/skills --skill to-tickets</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/mattpocock/skills --skill to-tickets"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de to-tickets</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/mattpocock/skills/tree/HEAD/skills/engineering/to-tickets">Ver fonte<span class="visually-hidden"> de to-tickets</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="user-story user-story escreve user stories no formato de mike cohn, com critérios de aceite em gherkin. deanpeters product agile requirements skill">
+              <article class="card" aria-labelledby="item-user-story">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-user-story">user-story</h5>
+                <p class="card__desc">Escreve user stories no formato de Mike Cohn, com critérios de aceite em Gherkin.</p>
+                <p class="card__author">Autor: deanpeters · Licença: CC-BY-NC-SA-4.0</p>
+                <p class="note">Licença não comercial: o uso em trabalho remunerado ou produto comercial depende de autorização do autor.</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill user-story</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill user-story"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de user-story</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/deanpeters/Product-Manager-Skills/tree/HEAD/skills/user-story">Ver fonte<span class="visually-hidden"> de user-story</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="skill" data-origin="recommended" data-search="user-story-mapping user-story-mapping monta um user story map para organizar o backlog pela jornada do usuário e planejar entregas. deanpeters product agile planning skill">
+              <article class="card" aria-labelledby="item-user-story-mapping">
+                <div class="card__meta">
+                  <span class="badge">Skill</span>
+                </div>
+                <h5 class="card__title" id="item-user-story-mapping">user-story-mapping</h5>
+                <p class="card__desc">Monta um user story map para organizar o backlog pela jornada do usuário e planejar entregas.</p>
+                <p class="card__author">Autor: deanpeters · Licença: CC-BY-NC-SA-4.0</p>
+                <p class="note">Licença não comercial: o uso em trabalho remunerado ou produto comercial depende de autorização do autor.</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill user-story-mapping</code></pre>
+                    <button type="button" class="btn-copy" data-copy="npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill user-story-mapping"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de user-story-mapping</span></button>
+                  </div>
+                </div>
+                <a class="card__link" href="https://github.com/deanpeters/Product-Manager-Skills/tree/HEAD/skills/user-story-mapping">Ver fonte<span class="visually-hidden"> de user-story-mapping</span></a>
+              </article>
+            </li>
+            <li class="card-item" data-type="mcp" data-origin="recommended" data-search="playwright mcp playwright-mcp permite que o agent controle um navegador de verdade via playwright, usando a árvore de acessibilidade em vez de screenshots. microsoft testing browser e2e mcp">
+              <article class="card" aria-labelledby="item-playwright-mcp">
+                <div class="card__meta">
+                  <span class="badge">MCP</span>
+                </div>
+                <h5 class="card__title" id="item-playwright-mcp">Playwright MCP</h5>
+                <p class="card__desc">Permite que o agent controle um navegador de verdade via Playwright, usando a árvore de acessibilidade em vez de screenshots.</p>
+                <p class="card__author">Autor: microsoft · Licença: Apache-2.0</p>
+                <div class="cmd">
+                  <span class="cmd__label">Instalar no Claude Code</span>
+                  <div class="cmd__row">
+                    <pre tabindex="0"><code>claude mcp add --scope user playwright -- npx -y @playwright/mcp@latest</code></pre>
+                    <button type="button" class="btn-copy" data-copy="claude mcp add --scope user playwright -- npx -y @playwright/mcp@latest"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> comando de instalação de Playwright MCP</span></button>
+                  </div>
+                </div>
+                <details>
+                  <summary>Comandos para outras ferramentas</summary>
+                  <div class="cmd">
+                    <span class="cmd__label">Codex</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>codex mcp add playwright -- npx -y @playwright/mcp@latest</code></pre>
+                      <button type="button" class="btn-copy" data-copy="codex mcp add playwright -- npx -y @playwright/mcp@latest"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Playwright MCP no Codex</span></button>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <span class="cmd__label">VS Code + Copilot</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>code --add-mcp '{&quot;name&quot;:&quot;playwright&quot;,&quot;type&quot;:&quot;stdio&quot;,&quot;command&quot;:&quot;npx&quot;,&quot;args&quot;:[&quot;-y&quot;,&quot;@playwright/mcp@latest&quot;]}'</code></pre>
+                      <button type="button" class="btn-copy" data-copy="code --add-mcp '{&quot;name&quot;:&quot;playwright&quot;,&quot;type&quot;:&quot;stdio&quot;,&quot;command&quot;:&quot;npx&quot;,&quot;args&quot;:[&quot;-y&quot;,&quot;@playwright/mcp@latest&quot;]}'"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Playwright MCP no VS Code</span></button>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <span class="cmd__label">Cursor (~/.cursor/mcp.json)</span>
+                    <div class="cmd__row">
+                      <pre tabindex="0"><code>{
+                    &quot;mcpServers&quot;: {
+                      &quot;playwright&quot;: {
+                        &quot;command&quot;: &quot;npx&quot;,
+                        &quot;args&quot;: [
+                          &quot;-y&quot;,
+                          &quot;@playwright/mcp@latest&quot;
+                        ]
+                      }
+                    }
+                  }</code></pre>
+                      <button type="button" class="btn-copy" data-copy="{
+                    &quot;mcpServers&quot;: {
+                      &quot;playwright&quot;: {
+                        &quot;command&quot;: &quot;npx&quot;,
+                        &quot;args&quot;: [
+                          &quot;-y&quot;,
+                          &quot;@playwright/mcp@latest&quot;
+                        ]
+                      }
+                    }
+                  }"><svg aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span class="btn-copy__text">Copiar</span><span class="visually-hidden"> para Playwright MCP no Cursor</span></button>
+                    </div>
+                  </div>
+                </details>
+                <a class="card__link" href="https://github.com/microsoft/playwright-mcp">Ver fonte<span class="visually-hidden"> de Playwright MCP</span></a>
+              </article>
+            </li>
+          </ul>
+          <p class="empty" data-filter-empty hidden>Nenhum item deste grupo corresponde aos filtros.</p>
+        </div>
+      </section>
+      <!-- CATALOG:END -->
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <h2>Créditos</h2>
+    <p>Os itens recomendados pertencem aos seus autores e seguem as licenças dos repositórios originais. Os itens próprios usam a licença MIT.</p>
+    <!-- CREDITS:START -->
+    <ul class="credits">
+      <li><a href="https://github.com/angular/angular-cli">angular/angular-cli</a> (MIT)</li>
+      <li><a href="https://github.com/angular/skills">angular/skills</a> (Not specified)</li>
+      <li><a href="https://github.com/anthropics/skills">anthropics/skills</a> (Apache-2.0)</li>
+      <li><a href="https://github.com/deanpeters/Product-Manager-Skills">deanpeters/Product-Manager-Skills</a> (CC-BY-NC-SA-4.0)</li>
+      <li><a href="https://github.com/dotnet/skills">dotnet/skills</a> (MIT)</li>
+      <li><a href="https://github.com/github/awesome-copilot">github/awesome-copilot</a> (MIT)</li>
+      <li><a href="https://github.com/mattpocock/skills">mattpocock/skills</a> (MIT)</li>
+      <li><a href="https://github.com/microsoft/playwright-mcp">microsoft/playwright-mcp</a> (Apache-2.0)</li>
+      <li><a href="https://github.com/MicrosoftDocs/mcp">MicrosoftDocs/mcp</a> (CC-BY-4.0)</li>
+      <li><a href="https://github.com/obra/superpowers">obra/superpowers</a> (MIT)</li>
+      <li><a href="https://github.com/upstash/context7">upstash/context7</a> (MIT)</li>
+    </ul>
+    <p>Feito por <a href="https://github.com/dev-cristhian">dev-cristhian</a> · <a href="https://github.com/dev-cristhian/ai-toolkit">Código-fonte no GitHub</a></p>
+    <!-- CREDITS:END -->
+  </div>
+</footer>
+
+<div class="visually-hidden" role="status" aria-live="polite" id="live-region"></div>
+</body>
+</html>

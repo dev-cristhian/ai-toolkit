@@ -1,0 +1,40 @@
+{
+  "name": "@dev-cristhian/ai-toolkit",
+  "version": "0.1.0",
+  "description": "Personal hub of AI skills, agents and MCP servers (own + recommended) with a one-command installer for Claude Code, Cursor, Codex and VS Code + GitHub Copilot.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Cristhian Santos (https://github.com/dev-cristhian)",
+  "homepage": "https://dev-cristhian.github.io/ai-toolkit/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-cristhian/ai-toolkit.git"
+  },
+  "keywords": ["ai", "skills", "agents", "mcp", "claude-code", "cursor", "codex", "copilot"],
+  "bin": {
+    "ai-toolkit": "bin/ai-toolkit.mjs"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "agents/",
+    "skills/",
+    "mcps/",
+    "catalog.json",
+    "catalog.schema.json"
+  ],
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build:catalog": "node scripts/build-catalog.mjs",
+    "build:readme": "node scripts/build-readme.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "build": "npm run build:catalog && npm run build:readme && npm run build:site && npm run validate",
+    "check:links": "node scripts/check-links.mjs",
+    "install:dry-run": "node bin/ai-toolkit.mjs install --dry-run",
+    "serve": "node scripts/serve.mjs"
+  }
+}

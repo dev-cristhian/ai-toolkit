@@ -1,0 +1,630 @@
+{
+  "$schema": "./catalog.schema.json",
+  "repository": "https://github.com/dev-cristhian/ai-toolkit",
+  "branch": "main",
+  "site": "https://dev-cristhian.github.io/ai-toolkit/",
+  "levels": [
+    {
+      "id": 1,
+      "slug": "methodology",
+      "name_en": "Methodology",
+      "name_pt": "Metodologia",
+      "description_en": "General-purpose ways of working with AI: clarifying ideas, brainstorming and planning before writing code.",
+      "description_pt": "Jeitos gerais de trabalhar com IA: esclarecer ideias, fazer brainstorming e planejar antes de escrever código."
+    },
+    {
+      "id": 2,
+      "slug": "development",
+      "name_en": "Development",
+      "name_pt": "Desenvolvimento",
+      "description_en": "Day-to-day software engineering: frameworks, up-to-date documentation, performance and UI quality.",
+      "description_pt": "Engenharia de software do dia a dia: frameworks, documentação atualizada, performance e qualidade de interface."
+    },
+    {
+      "id": 3,
+      "slug": "qa-business",
+      "name_en": "QA & Business",
+      "name_pt": "QA e Negócio",
+      "description_en": "Testing, product discovery, requirements, specs and tickets.",
+      "description_pt": "Testes, discovery de produto, requisitos, specs e tickets."
+    }
+  ],
+  "items": [
+    {
+      "id": "web-design-guidelines",
+      "type": "skill",
+      "level": 2,
+      "origin": "own",
+      "name": "web-design-guidelines",
+      "description_en": "Create, improve, or audit web interfaces and reusable UI components for accessibility, responsive design, UX, Lighthouse quality, and SEO. Use for Vanilla HTML/CSS/JavaScript, Node-based web tooling, Angular, React, or ASP.NET Core MVC/Razor Pages; do not use for backend-only tasks.",
+      "description_pt": "Cria, melhora ou audita interfaces web com foco em acessibilidade (WCAG), responsividade, UX, Lighthouse e SEO. Funciona com HTML/CSS/JS puro, Angular, React e ASP.NET Core MVC/Razor.",
+      "author": "dev-cristhian",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/dev-cristhian/ai-toolkit",
+        "path": "skills/web-design-guidelines",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/dev-cristhian/ai-toolkit",
+        "skill": "web-design-guidelines",
+        "command": "npx skills add https://github.com/dev-cristhian/ai-toolkit --skill web-design-guidelines"
+      },
+      "tags": [
+        "frontend",
+        "accessibility",
+        "ux",
+        "seo",
+        "lighthouse"
+      ]
+    },
+    {
+      "id": "web-pending-change-auditor",
+      "type": "agent",
+      "level": 2,
+      "origin": "own",
+      "name": "web-pending-change-auditor",
+      "description_en": "Read-only multi-stack code-review agent that audits pending Vanilla, Node, Angular, React, and ASP.NET MVC/Razor web changes in Git or TFVC/TFS against project guidelines.",
+      "description_pt": "Agent de code review somente leitura: audita as mudanças pendentes (Git ou TFVC/TFS) de projetos web em HTML/CSS/JS, Node, Angular, React e ASP.NET MVC/Razor, usando a skill web-design-guidelines como referência.",
+      "author": "dev-cristhian",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/dev-cristhian/ai-toolkit",
+        "path": "agents/web-pending-change-auditor.md",
+        "ref": null
+      },
+      "install": {
+        "method": "agent-file",
+        "path": "agents/web-pending-change-auditor.md",
+        "command": "curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --id web-pending-change-auditor"
+      },
+      "tags": [
+        "code-review",
+        "frontend",
+        "accessibility",
+        "git",
+        "tfvc"
+      ],
+      "requires": [
+        "web-design-guidelines"
+      ]
+    },
+    {
+      "id": "brainstorming",
+      "type": "skill",
+      "level": 1,
+      "origin": "recommended",
+      "name": "brainstorming",
+      "description_en": "Turns rough ideas into a validated design through collaborative, one-question-at-a-time dialogue before implementation.",
+      "description_pt": "Transforma uma ideia ainda crua em um design validado, com um diálogo de uma pergunta por vez antes da implementação.",
+      "author": "obra",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/obra/superpowers",
+        "path": "skills/brainstorming",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/obra/superpowers",
+        "skill": "brainstorming",
+        "command": "npx skills add https://github.com/obra/superpowers --skill brainstorming"
+      },
+      "tags": [
+        "planning",
+        "design"
+      ]
+    },
+    {
+      "id": "grill-me",
+      "type": "skill",
+      "level": 1,
+      "origin": "recommended",
+      "name": "grill-me",
+      "description_en": "Relentlessly interviews you about a plan or design until every branch of the decision tree is resolved.",
+      "description_pt": "Faz uma bateria de perguntas sobre o seu plano ou design até resolver cada decisão em aberto, antes de qualquer código.",
+      "author": "mattpocock",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/mattpocock/skills",
+        "path": "skills/productivity/grill-me",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/mattpocock/skills",
+        "skill": "grill-me",
+        "command": "npx skills add https://github.com/mattpocock/skills --skill grill-me"
+      },
+      "tags": [
+        "planning",
+        "requirements"
+      ]
+    },
+    {
+      "id": "writing-plans",
+      "type": "skill",
+      "level": 1,
+      "origin": "recommended",
+      "name": "writing-plans",
+      "description_en": "Writes detailed, step-by-step implementation plans that an agent (or a teammate) can execute with little context.",
+      "description_pt": "Escreve planos de implementação detalhados, passo a passo, que um agent (ou uma pessoa do time) consegue executar com pouco contexto.",
+      "author": "obra",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/obra/superpowers",
+        "path": "skills/writing-plans",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/obra/superpowers",
+        "skill": "writing-plans",
+        "command": "npx skills add https://github.com/obra/superpowers --skill writing-plans"
+      },
+      "tags": [
+        "planning"
+      ]
+    },
+    {
+      "id": "analyzing-dotnet-performance",
+      "type": "skill",
+      "level": 2,
+      "origin": "recommended",
+      "name": "analyzing-dotnet-performance",
+      "description_en": "Scans .NET code for about 50 performance anti-patterns (async, memory, strings, LINQ, regex, serialization, I/O) with tiered severity.",
+      "description_pt": "Procura cerca de 50 anti-patterns de performance em código .NET (async, memória, strings, LINQ, regex, serialização, I/O) e classifica por gravidade.",
+      "author": "dotnet",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/dotnet/skills",
+        "path": "plugins/dotnet-diag/skills/analyzing-dotnet-performance",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/dotnet/skills",
+        "skill": "analyzing-dotnet-performance",
+        "command": "npx skills add https://github.com/dotnet/skills --skill analyzing-dotnet-performance"
+      },
+      "tags": [
+        "dotnet",
+        "performance",
+        "diagnostics"
+      ]
+    },
+    {
+      "id": "angular-developer",
+      "type": "skill",
+      "level": 2,
+      "origin": "recommended",
+      "name": "angular-developer",
+      "description_en": "Official Angular team skill for writing modern Angular code (signals, standalone components, current APIs).",
+      "description_pt": "Skill oficial do time do Angular para escrever Angular moderno (signals, standalone components, APIs atuais).",
+      "author": "angular",
+      "license": "Not specified",
+      "source": {
+        "repo": "https://github.com/angular/skills",
+        "path": "angular-developer",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/angular/skills",
+        "skill": "angular-developer",
+        "command": "npx skills add https://github.com/angular/skills --skill angular-developer"
+      },
+      "tags": [
+        "angular",
+        "frontend"
+      ]
+    },
+    {
+      "id": "dotnet-webapi",
+      "type": "skill",
+      "level": 2,
+      "origin": "recommended",
+      "name": "dotnet-webapi",
+      "description_en": "Guides creating and changing ASP.NET Core Web API endpoints with correct HTTP semantics, OpenAPI metadata and error handling.",
+      "description_pt": "Orienta a criação e a alteração de endpoints em ASP.NET Core Web API com semântica HTTP correta, metadados OpenAPI e tratamento de erros.",
+      "author": "dotnet",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/dotnet/skills",
+        "path": "plugins/dotnet-aspnetcore/skills/dotnet-webapi",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/dotnet/skills",
+        "skill": "dotnet-webapi",
+        "command": "npx skills add https://github.com/dotnet/skills --skill dotnet-webapi"
+      },
+      "tags": [
+        "dotnet",
+        "aspnetcore",
+        "api"
+      ]
+    },
+    {
+      "id": "frontend-design",
+      "type": "skill",
+      "level": 2,
+      "origin": "recommended",
+      "name": "frontend-design",
+      "description_en": "Guides distinctive, intentional visual design when building or reshaping a UI: aesthetic direction, typography and non-templated choices.",
+      "description_pt": "Orienta um design visual marcante e intencional ao criar ou repaginar uma interface: direção estética, tipografia e escolhas que fogem do visual de template.",
+      "author": "anthropics",
+      "license": "Apache-2.0",
+      "source": {
+        "repo": "https://github.com/anthropics/skills",
+        "path": "skills/frontend-design",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/anthropics/skills",
+        "skill": "frontend-design",
+        "command": "npx skills add https://github.com/anthropics/skills --skill frontend-design"
+      },
+      "tags": [
+        "frontend",
+        "design",
+        "ui"
+      ]
+    },
+    {
+      "id": "optimizing-ef-core-queries",
+      "type": "skill",
+      "level": 2,
+      "origin": "recommended",
+      "name": "optimizing-ef-core-queries",
+      "description_en": "Reviews and optimizes Entity Framework Core data access: slow or memory-heavy queries, excessive round-trips and hidden SaveChanges.",
+      "description_pt": "Revisa e otimiza o acesso a dados com Entity Framework Core: queries lentas ou pesadas, idas e voltas demais ao banco e SaveChanges escondidos.",
+      "author": "dotnet",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/dotnet/skills",
+        "path": "plugins/dotnet-data/skills/optimizing-ef-core-queries",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/dotnet/skills",
+        "skill": "optimizing-ef-core-queries",
+        "command": "npx skills add https://github.com/dotnet/skills --skill optimizing-ef-core-queries"
+      },
+      "tags": [
+        "dotnet",
+        "efcore",
+        "performance"
+      ]
+    },
+    {
+      "id": "angular-cli-mcp",
+      "type": "mcp",
+      "level": 2,
+      "origin": "recommended",
+      "name": "Angular CLI MCP Server",
+      "description_en": "Official Angular CLI MCP server: best practices, documentation search, examples and project-aware tools for Angular workspaces.",
+      "description_pt": "MCP oficial da Angular CLI: boas práticas, busca na documentação, exemplos e ferramentas que entendem o seu workspace Angular.",
+      "author": "angular",
+      "license": "MIT",
+      "homepage": "https://angular.dev/ai/mcp",
+      "source": {
+        "repo": "https://github.com/angular/angular-cli",
+        "path": null,
+        "ref": null
+      },
+      "install": {
+        "method": "mcp-config",
+        "server": {
+          "name": "angular-cli",
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@angular/cli",
+            "mcp"
+          ]
+        },
+        "command": "claude mcp add --scope user angular-cli -- npx -y @angular/cli mcp"
+      },
+      "tags": [
+        "angular",
+        "frontend",
+        "docs"
+      ]
+    },
+    {
+      "id": "context7-mcp",
+      "type": "mcp",
+      "level": 2,
+      "origin": "recommended",
+      "name": "Context7 MCP Server",
+      "description_en": "Injects up-to-date, version-specific library documentation and code examples into the prompt. Works without an API key; set CONTEXT7_API_KEY for higher limits.",
+      "description_pt": "Coloca no prompt a documentação atualizada (e da versão certa) das bibliotecas que você usa. Funciona sem API key; defina CONTEXT7_API_KEY para limites maiores.",
+      "author": "upstash",
+      "license": "MIT",
+      "homepage": "https://context7.com/",
+      "source": {
+        "repo": "https://github.com/upstash/context7",
+        "path": null,
+        "ref": null
+      },
+      "install": {
+        "method": "mcp-config",
+        "server": {
+          "name": "context7",
+          "transport": "http",
+          "url": "https://mcp.context7.com/mcp",
+          "auth": {
+            "type": "bearer",
+            "env": "CONTEXT7_API_KEY",
+            "optional": true
+          }
+        },
+        "command": "claude mcp add --scope user --transport http context7 https://mcp.context7.com/mcp"
+      },
+      "tags": [
+        "docs",
+        "libraries"
+      ]
+    },
+    {
+      "id": "microsoft-learn-mcp",
+      "type": "mcp",
+      "level": 2,
+      "origin": "recommended",
+      "name": "Microsoft Learn MCP Server",
+      "description_en": "Remote MCP server that searches and fetches official, up-to-date Microsoft Learn documentation and code samples. No authentication required.",
+      "description_pt": "MCP remoto que busca a documentação oficial e atualizada do Microsoft Learn (.NET, Azure etc.) e exemplos de código. Não exige login.",
+      "author": "microsoft",
+      "license": "CC-BY-4.0",
+      "homepage": "https://learn.microsoft.com/pt-br/training/support/mcp",
+      "source": {
+        "repo": "https://github.com/MicrosoftDocs/mcp",
+        "path": null,
+        "ref": null
+      },
+      "install": {
+        "method": "mcp-config",
+        "server": {
+          "name": "microsoft-learn",
+          "transport": "http",
+          "url": "https://learn.microsoft.com/api/mcp"
+        },
+        "command": "claude mcp add --scope user --transport http microsoft-learn https://learn.microsoft.com/api/mcp"
+      },
+      "tags": [
+        "dotnet",
+        "azure",
+        "docs"
+      ]
+    },
+    {
+      "id": "discovery-process",
+      "type": "skill",
+      "level": 3,
+      "origin": "recommended",
+      "name": "discovery-process",
+      "description_en": "Guides an end-to-end product discovery process, from problem framing to validated opportunities.",
+      "description_pt": "Conduz um processo completo de discovery de produto, do enquadramento do problema até oportunidades validadas.",
+      "author": "deanpeters",
+      "license": "CC-BY-NC-SA-4.0",
+      "source": {
+        "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+        "path": "skills/discovery-process",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+        "skill": "discovery-process",
+        "command": "npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill discovery-process"
+      },
+      "tags": [
+        "product",
+        "discovery"
+      ]
+    },
+    {
+      "id": "playwright-generate-test",
+      "type": "skill",
+      "level": 3,
+      "origin": "recommended",
+      "name": "playwright-generate-test",
+      "description_en": "Generates Playwright tests from a scenario by exploring the app with the Playwright MCP first.",
+      "description_pt": "Gera testes Playwright a partir de um cenário, explorando a aplicação com o Playwright MCP antes de escrever o teste.",
+      "author": "github",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/github/awesome-copilot",
+        "path": "skills/playwright-generate-test",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/github/awesome-copilot",
+        "skill": "playwright-generate-test",
+        "command": "npx skills add https://github.com/github/awesome-copilot --skill playwright-generate-test"
+      },
+      "tags": [
+        "testing",
+        "e2e",
+        "playwright"
+      ],
+      "requires": [
+        "playwright-mcp"
+      ]
+    },
+    {
+      "id": "prd-development",
+      "type": "skill",
+      "level": 3,
+      "origin": "recommended",
+      "name": "prd-development",
+      "description_en": "Helps write a structured Product Requirements Document (PRD).",
+      "description_pt": "Ajuda a escrever um PRD (Product Requirements Document) estruturado.",
+      "author": "deanpeters",
+      "license": "CC-BY-NC-SA-4.0",
+      "source": {
+        "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+        "path": "skills/prd-development",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+        "skill": "prd-development",
+        "command": "npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill prd-development"
+      },
+      "tags": [
+        "product",
+        "requirements"
+      ]
+    },
+    {
+      "id": "to-spec",
+      "type": "skill",
+      "level": 3,
+      "origin": "recommended",
+      "name": "to-spec",
+      "description_en": "Turns the current conversation into a spec and publishes it to the project issue tracker, with no extra interview.",
+      "description_pt": "Transforma a conversa atual em uma spec e publica no issue tracker do projeto, sem nova rodada de perguntas.",
+      "author": "mattpocock",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/mattpocock/skills",
+        "path": "skills/engineering/to-spec",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/mattpocock/skills",
+        "skill": "to-spec",
+        "command": "npx skills add https://github.com/mattpocock/skills --skill to-spec"
+      },
+      "tags": [
+        "requirements",
+        "spec"
+      ]
+    },
+    {
+      "id": "to-tickets",
+      "type": "skill",
+      "level": 3,
+      "origin": "recommended",
+      "name": "to-tickets",
+      "description_en": "Breaks a plan, spec or conversation into tracer-bullet tickets with their blocking dependencies, published to your tracker.",
+      "description_pt": "Quebra um plano, uma spec ou a conversa em tickets (tracer bullets) com as dependências entre eles e publica no seu tracker.",
+      "author": "mattpocock",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/mattpocock/skills",
+        "path": "skills/engineering/to-tickets",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/mattpocock/skills",
+        "skill": "to-tickets",
+        "command": "npx skills add https://github.com/mattpocock/skills --skill to-tickets"
+      },
+      "tags": [
+        "planning",
+        "tickets"
+      ]
+    },
+    {
+      "id": "user-story",
+      "type": "skill",
+      "level": 3,
+      "origin": "recommended",
+      "name": "user-story",
+      "description_en": "Writes user stories in Mike Cohn format with Gherkin acceptance criteria.",
+      "description_pt": "Escreve user stories no formato de Mike Cohn, com critérios de aceite em Gherkin.",
+      "author": "deanpeters",
+      "license": "CC-BY-NC-SA-4.0",
+      "source": {
+        "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+        "path": "skills/user-story",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+        "skill": "user-story",
+        "command": "npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill user-story"
+      },
+      "tags": [
+        "product",
+        "agile",
+        "requirements"
+      ]
+    },
+    {
+      "id": "user-story-mapping",
+      "type": "skill",
+      "level": 3,
+      "origin": "recommended",
+      "name": "user-story-mapping",
+      "description_en": "Builds a user story map to organize the backlog around the user journey and plan releases.",
+      "description_pt": "Monta um user story map para organizar o backlog pela jornada do usuário e planejar entregas.",
+      "author": "deanpeters",
+      "license": "CC-BY-NC-SA-4.0",
+      "source": {
+        "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+        "path": "skills/user-story-mapping",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+        "skill": "user-story-mapping",
+        "command": "npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill user-story-mapping"
+      },
+      "tags": [
+        "product",
+        "agile",
+        "planning"
+      ]
+    },
+    {
+      "id": "playwright-mcp",
+      "type": "mcp",
+      "level": 3,
+      "origin": "recommended",
+      "name": "Playwright MCP",
+      "description_en": "Lets the agent drive a real browser through Playwright using accessibility snapshots instead of screenshots.",
+      "description_pt": "Permite que o agent controle um navegador de verdade via Playwright, usando a árvore de acessibilidade em vez de screenshots.",
+      "author": "microsoft",
+      "license": "Apache-2.0",
+      "homepage": "https://github.com/microsoft/playwright-mcp",
+      "source": {
+        "repo": "https://github.com/microsoft/playwright-mcp",
+        "path": null,
+        "ref": null
+      },
+      "install": {
+        "method": "mcp-config",
+        "server": {
+          "name": "playwright",
+          "transport": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@playwright/mcp@latest"
+          ]
+        },
+        "command": "claude mcp add --scope user playwright -- npx -y @playwright/mcp@latest"
+      },
+      "tags": [
+        "testing",
+        "browser",
+        "e2e"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,646 @@
+{
+  "repository": "https://github.com/dev-cristhian/ai-toolkit",
+  "site": "https://dev-cristhian.github.io/ai-toolkit/",
+  "install": {
+    "unix": "curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash",
+    "windows": "irm https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.ps1 | iex"
+  },
+  "targets": {
+    "claude": "Claude Code",
+    "cursor": "Cursor",
+    "codex": "OpenAI Codex",
+    "copilot": "VS Code + GitHub Copilot"
+  },
+  "levels": [
+    {
+      "id": 1,
+      "slug": "methodology",
+      "name": "Metodologia",
+      "description": "Jeitos gerais de trabalhar com IA: esclarecer ideias, fazer brainstorming e planejar antes de escrever código.",
+      "items": [
+        {
+          "id": "brainstorming",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "brainstorming",
+          "description": "Transforma uma ideia ainda crua em um design validado, com um diálogo de uma pergunta por vez antes da implementação.",
+          "author": "obra",
+          "license": "MIT",
+          "url": "https://github.com/obra/superpowers/tree/HEAD/skills/brainstorming",
+          "command": "npx skills add https://github.com/obra/superpowers --skill brainstorming",
+          "tags": [
+            "planning",
+            "design"
+          ],
+          "requires": []
+        },
+        {
+          "id": "grill-me",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "grill-me",
+          "description": "Faz uma bateria de perguntas sobre o seu plano ou design até resolver cada decisão em aberto, antes de qualquer código.",
+          "author": "mattpocock",
+          "license": "MIT",
+          "url": "https://github.com/mattpocock/skills/tree/HEAD/skills/productivity/grill-me",
+          "command": "npx skills add https://github.com/mattpocock/skills --skill grill-me",
+          "tags": [
+            "planning",
+            "requirements"
+          ],
+          "requires": []
+        },
+        {
+          "id": "writing-plans",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "writing-plans",
+          "description": "Escreve planos de implementação detalhados, passo a passo, que um agent (ou uma pessoa do time) consegue executar com pouco contexto.",
+          "author": "obra",
+          "license": "MIT",
+          "url": "https://github.com/obra/superpowers/tree/HEAD/skills/writing-plans",
+          "command": "npx skills add https://github.com/obra/superpowers --skill writing-plans",
+          "tags": [
+            "planning"
+          ],
+          "requires": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "development",
+      "name": "Desenvolvimento",
+      "description": "Engenharia de software do dia a dia: frameworks, documentação atualizada, performance e qualidade de interface.",
+      "items": [
+        {
+          "id": "web-design-guidelines",
+          "type": "skill",
+          "origin": "own",
+          "name": "web-design-guidelines",
+          "description": "Cria, melhora ou audita interfaces web com foco em acessibilidade (WCAG), responsividade, UX, Lighthouse e SEO. Funciona com HTML/CSS/JS puro, Angular, React e ASP.NET Core MVC/Razor.",
+          "author": "dev-cristhian",
+          "license": "MIT",
+          "url": "https://github.com/dev-cristhian/ai-toolkit/tree/HEAD/skills/web-design-guidelines",
+          "command": "npx skills add https://github.com/dev-cristhian/ai-toolkit --skill web-design-guidelines",
+          "tags": [
+            "frontend",
+            "accessibility",
+            "ux",
+            "seo",
+            "lighthouse"
+          ],
+          "requires": []
+        },
+        {
+          "id": "web-pending-change-auditor",
+          "type": "agent",
+          "origin": "own",
+          "name": "web-pending-change-auditor",
+          "description": "Agent de code review somente leitura: audita as mudanças pendentes (Git ou TFVC/TFS) de projetos web em HTML/CSS/JS, Node, Angular, React e ASP.NET MVC/Razor, usando a skill web-design-guidelines como referência.",
+          "author": "dev-cristhian",
+          "license": "MIT",
+          "url": "https://github.com/dev-cristhian/ai-toolkit/tree/HEAD/agents/web-pending-change-auditor.md",
+          "command": "curl -fsSL https://raw.githubusercontent.com/dev-cristhian/ai-toolkit/main/install.sh | bash -s -- --id web-pending-change-auditor",
+          "tags": [
+            "code-review",
+            "frontend",
+            "accessibility",
+            "git",
+            "tfvc"
+          ],
+          "requires": [
+            "web-design-guidelines"
+          ]
+        },
+        {
+          "id": "analyzing-dotnet-performance",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "analyzing-dotnet-performance",
+          "description": "Procura cerca de 50 anti-patterns de performance em código .NET (async, memória, strings, LINQ, regex, serialização, I/O) e classifica por gravidade.",
+          "author": "dotnet",
+          "license": "MIT",
+          "url": "https://github.com/dotnet/skills/tree/HEAD/plugins/dotnet-diag/skills/analyzing-dotnet-performance",
+          "command": "npx skills add https://github.com/dotnet/skills --skill analyzing-dotnet-performance",
+          "tags": [
+            "dotnet",
+            "performance",
+            "diagnostics"
+          ],
+          "requires": []
+        },
+        {
+          "id": "angular-developer",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "angular-developer",
+          "description": "Skill oficial do time do Angular para escrever Angular moderno (signals, standalone components, APIs atuais).",
+          "author": "angular",
+          "license": "Not specified",
+          "url": "https://github.com/angular/skills/tree/HEAD/angular-developer",
+          "command": "npx skills add https://github.com/angular/skills --skill angular-developer",
+          "tags": [
+            "angular",
+            "frontend"
+          ],
+          "requires": []
+        },
+        {
+          "id": "dotnet-webapi",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "dotnet-webapi",
+          "description": "Orienta a criação e a alteração de endpoints em ASP.NET Core Web API com semântica HTTP correta, metadados OpenAPI e tratamento de erros.",
+          "author": "dotnet",
+          "license": "MIT",
+          "url": "https://github.com/dotnet/skills/tree/HEAD/plugins/dotnet-aspnetcore/skills/dotnet-webapi",
+          "command": "npx skills add https://github.com/dotnet/skills --skill dotnet-webapi",
+          "tags": [
+            "dotnet",
+            "aspnetcore",
+            "api"
+          ],
+          "requires": []
+        },
+        {
+          "id": "frontend-design",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "frontend-design",
+          "description": "Orienta um design visual marcante e intencional ao criar ou repaginar uma interface: direção estética, tipografia e escolhas que fogem do visual de template.",
+          "author": "anthropics",
+          "license": "Apache-2.0",
+          "url": "https://github.com/anthropics/skills/tree/HEAD/skills/frontend-design",
+          "command": "npx skills add https://github.com/anthropics/skills --skill frontend-design",
+          "tags": [
+            "frontend",
+            "design",
+            "ui"
+          ],
+          "requires": []
+        },
+        {
+          "id": "optimizing-ef-core-queries",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "optimizing-ef-core-queries",
+          "description": "Revisa e otimiza o acesso a dados com Entity Framework Core: queries lentas ou pesadas, idas e voltas demais ao banco e SaveChanges escondidos.",
+          "author": "dotnet",
+          "license": "MIT",
+          "url": "https://github.com/dotnet/skills/tree/HEAD/plugins/dotnet-data/skills/optimizing-ef-core-queries",
+          "command": "npx skills add https://github.com/dotnet/skills --skill optimizing-ef-core-queries",
+          "tags": [
+            "dotnet",
+            "efcore",
+            "performance"
+          ],
+          "requires": []
+        },
+        {
+          "id": "angular-cli-mcp",
+          "type": "mcp",
+          "origin": "recommended",
+          "name": "Angular CLI MCP Server",
+          "description": "MCP oficial da Angular CLI: boas práticas, busca na documentação, exemplos e ferramentas que entendem o seu workspace Angular.",
+          "author": "angular",
+          "license": "MIT",
+          "url": "https://github.com/angular/angular-cli",
+          "command": "claude mcp add --scope user angular-cli -- npx -y @angular/cli mcp",
+          "tags": [
+            "angular",
+            "frontend",
+            "docs"
+          ],
+          "requires": [],
+          "commands": {
+            "claude": "claude mcp add --scope user angular-cli -- npx -y @angular/cli mcp",
+            "codex": "codex mcp add angular-cli -- npx -y @angular/cli mcp",
+            "copilot": "code --add-mcp '{\"name\":\"angular-cli\",\"type\":\"stdio\",\"command\":\"npx\",\"args\":[\"-y\",\"@angular/cli\",\"mcp\"]}'",
+            "cursor": "{\n  \"mcpServers\": {\n    \"angular-cli\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@angular/cli\",\n        \"mcp\"\n      ]\n    }\n  }\n}"
+          }
+        },
+        {
+          "id": "context7-mcp",
+          "type": "mcp",
+          "origin": "recommended",
+          "name": "Context7 MCP Server",
+          "description": "Coloca no prompt a documentação atualizada (e da versão certa) das bibliotecas que você usa. Funciona sem API key; defina CONTEXT7_API_KEY para limites maiores.",
+          "author": "upstash",
+          "license": "MIT",
+          "url": "https://github.com/upstash/context7",
+          "command": "claude mcp add --scope user --transport http context7 https://mcp.context7.com/mcp",
+          "tags": [
+            "docs",
+            "libraries"
+          ],
+          "requires": [],
+          "commands": {
+            "claude": "claude mcp add --scope user --transport http context7 https://mcp.context7.com/mcp",
+            "codex": "codex mcp add context7 --url https://mcp.context7.com/mcp",
+            "copilot": "code --add-mcp '{\"name\":\"context7\",\"type\":\"http\",\"url\":\"https://mcp.context7.com/mcp\"}'",
+            "cursor": "{\n  \"mcpServers\": {\n    \"context7\": {\n      \"url\": \"https://mcp.context7.com/mcp\"\n    }\n  }\n}"
+          }
+        },
+        {
+          "id": "microsoft-learn-mcp",
+          "type": "mcp",
+          "origin": "recommended",
+          "name": "Microsoft Learn MCP Server",
+          "description": "MCP remoto que busca a documentação oficial e atualizada do Microsoft Learn (.NET, Azure etc.) e exemplos de código. Não exige login.",
+          "author": "microsoft",
+          "license": "CC-BY-4.0",
+          "url": "https://github.com/MicrosoftDocs/mcp",
+          "command": "claude mcp add --scope user --transport http microsoft-learn https://learn.microsoft.com/api/mcp",
+          "tags": [
+            "dotnet",
+            "azure",
+            "docs"
+          ],
+          "requires": [],
+          "commands": {
+            "claude": "claude mcp add --scope user --transport http microsoft-learn https://learn.microsoft.com/api/mcp",
+            "codex": "codex mcp add microsoft-learn --url https://learn.microsoft.com/api/mcp",
+            "copilot": "code --add-mcp '{\"name\":\"microsoft-learn\",\"type\":\"http\",\"url\":\"https://learn.microsoft.com/api/mcp\"}'",
+            "cursor": "{\n  \"mcpServers\": {\n    \"microsoft-learn\": {\n      \"url\": \"https://learn.microsoft.com/api/mcp\"\n    }\n  }\n}"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "qa-business",
+      "name": "QA e Negócio",
+      "description": "Testes, discovery de produto, requisitos, specs e tickets.",
+      "items": [
+        {
+          "id": "discovery-process",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "discovery-process",
+          "description": "Conduz um processo completo de discovery de produto, do enquadramento do problema até oportunidades validadas.",
+          "author": "deanpeters",
+          "license": "CC-BY-NC-SA-4.0",
+          "url": "https://github.com/deanpeters/Product-Manager-Skills/tree/HEAD/skills/discovery-process",
+          "command": "npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill discovery-process",
+          "tags": [
+            "product",
+            "discovery"
+          ],
+          "requires": []
+        },
+        {
+          "id": "playwright-generate-test",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "playwright-generate-test",
+          "description": "Gera testes Playwright a partir de um cenário, explorando a aplicação com o Playwright MCP antes de escrever o teste.",
+          "author": "github",
+          "license": "MIT",
+          "url": "https://github.com/github/awesome-copilot/tree/HEAD/skills/playwright-generate-test",
+          "command": "npx skills add https://github.com/github/awesome-copilot --skill playwright-generate-test",
+          "tags": [
+            "testing",
+            "e2e",
+            "playwright"
+          ],
+          "requires": [
+            "playwright-mcp"
+          ]
+        },
+        {
+          "id": "prd-development",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "prd-development",
+          "description": "Ajuda a escrever um PRD (Product Requirements Document) estruturado.",
+          "author": "deanpeters",
+          "license": "CC-BY-NC-SA-4.0",
+          "url": "https://github.com/deanpeters/Product-Manager-Skills/tree/HEAD/skills/prd-development",
+          "command": "npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill prd-development",
+          "tags": [
+            "product",
+            "requirements"
+          ],
+          "requires": []
+        },
+        {
+          "id": "to-spec",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "to-spec",
+          "description": "Transforma a conversa atual em uma spec e publica no issue tracker do projeto, sem nova rodada de perguntas.",
+          "author": "mattpocock",
+          "license": "MIT",
+          "url": "https://github.com/mattpocock/skills/tree/HEAD/skills/engineering/to-spec",
+          "command": "npx skills add https://github.com/mattpocock/skills --skill to-spec",
+          "tags": [
+            "requirements",
+            "spec"
+          ],
+          "requires": []
+        },
+        {
+          "id": "to-tickets",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "to-tickets",
+          "description": "Quebra um plano, uma spec ou a conversa em tickets (tracer bullets) com as dependências entre eles e publica no seu tracker.",
+          "author": "mattpocock",
+          "license": "MIT",
+          "url": "https://github.com/mattpocock/skills/tree/HEAD/skills/engineering/to-tickets",
+          "command": "npx skills add https://github.com/mattpocock/skills --skill to-tickets",
+          "tags": [
+            "planning",
+            "tickets"
+          ],
+          "requires": []
+        },
+        {
+          "id": "user-story",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "user-story",
+          "description": "Escreve user stories no formato de Mike Cohn, com critérios de aceite em Gherkin.",
+          "author": "deanpeters",
+          "license": "CC-BY-NC-SA-4.0",
+          "url": "https://github.com/deanpeters/Product-Manager-Skills/tree/HEAD/skills/user-story",
+          "command": "npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill user-story",
+          "tags": [
+            "product",
+            "agile",
+            "requirements"
+          ],
+          "requires": []
+        },
+        {
+          "id": "user-story-mapping",
+          "type": "skill",
+          "origin": "recommended",
+          "name": "user-story-mapping",
+          "description": "Monta um user story map para organizar o backlog pela jornada do usuário e planejar entregas.",
+          "author": "deanpeters",
+          "license": "CC-BY-NC-SA-4.0",
+          "url": "https://github.com/deanpeters/Product-Manager-Skills/tree/HEAD/skills/user-story-mapping",
+          "command": "npx skills add https://github.com/deanpeters/Product-Manager-Skills --skill user-story-mapping",
+          "tags": [
+            "product",
+            "agile",
+            "planning"
+          ],
+          "requires": []
+        },
+        {
+          "id": "playwright-mcp",
+          "type": "mcp",
+          "origin": "recommended",
+          "name": "Playwright MCP",
+          "description": "Permite que o agent controle um navegador de verdade via Playwright, usando a árvore de acessibilidade em vez de screenshots.",
+          "author": "microsoft",
+          "license": "Apache-2.0",
+          "url": "https://github.com/microsoft/playwright-mcp",
+          "command": "claude mcp add --scope user playwright -- npx -y @playwright/mcp@latest",
+          "tags": [
+            "testing",
+            "browser",
+            "e2e"
+          ],
+          "requires": [],
+          "commands": {
+            "claude": "claude mcp add --scope user playwright -- npx -y @playwright/mcp@latest",
+            "codex": "codex mcp add playwright -- npx -y @playwright/mcp@latest",
+            "copilot": "code --add-mcp '{\"name\":\"playwright\",\"type\":\"stdio\",\"command\":\"npx\",\"args\":[\"-y\",\"@playwright/mcp@latest\"]}'",
+            "cursor": "{\n  \"mcpServers\": {\n    \"playwright\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@playwright/mcp@latest\"\n      ]\n    }\n  }\n}"
+          }
+        }
+      ]
+    }
+  ],
+  "glossary": {
+    "categories": [
+      {
+        "id": "basics",
+        "label": "Fundamentos"
+      },
+      {
+        "id": "models",
+        "label": "Modelos"
+      },
+      {
+        "id": "prompting",
+        "label": "Prompting e contexto"
+      },
+      {
+        "id": "agents",
+        "label": "Agents e ferramentas"
+      },
+      {
+        "id": "data",
+        "label": "Dados e RAG"
+      }
+    ],
+    "terms": [
+      {
+        "id": "generative-ai",
+        "term": "Generative AI",
+        "category": "basics",
+        "definition": "IA que cria conteúdo novo (texto, código, imagem, áudio ou vídeo) a partir de um pedido, em vez de apenas classificar ou prever algo.",
+        "example": "Pedir “escreva um e-mail de boas-vindas para novos clientes” e receber o texto pronto."
+      },
+      {
+        "id": "nlp",
+        "term": "Natural Language Processing (NLP)",
+        "category": "basics",
+        "definition": "Área da computação que ensina máquinas a entender e produzir a linguagem que as pessoas falam e escrevem. Os LLMs são a geração mais recente dessa área.",
+        "example": "Tradutores automáticos, corretores ortográficos e chatbots usam NLP."
+      },
+      {
+        "id": "neural-networks",
+        "term": "Neural Networks",
+        "category": "basics",
+        "definition": "Modelos matemáticos inspirados, de forma bem simplificada, nos neurônios do cérebro. São camadas de “unidades” conectadas que aprendem padrões a partir de muitos exemplos."
+      },
+      {
+        "id": "parameters",
+        "term": "Parameters",
+        "category": "basics",
+        "definition": "Os números internos que um modelo ajusta durante o treinamento; é ali que fica o que ele “aprendeu”. Mais parameters costumam significar mais capacidade, mas também mais custo para rodar.",
+        "example": "Quando se fala em “modelo de 70B”, são 70 bilhões de parameters."
+      },
+      {
+        "id": "token",
+        "term": "Token",
+        "category": "basics",
+        "definition": "O pedacinho de texto que o modelo lê e escreve: pode ser uma palavra, parte de uma palavra ou um sinal de pontuação. Limites e preços das IAs são contados em tokens.",
+        "example": "“Desenvolvimento” pode virar 3 ou 4 tokens; em português, 1 token fica em média em torno de 3 a 4 caracteres."
+      },
+      {
+        "id": "reinforcement-learning",
+        "term": "Reinforcement Learning",
+        "category": "basics",
+        "definition": "Forma de treinar por tentativa e erro: o modelo recebe “recompensas” quando acerta e “penalidades” quando erra, e aprende a preferir o que dá certo. É muito usada para deixar LLMs mais úteis e seguros (por exemplo, RLHF, com feedback humano)."
+      },
+      {
+        "id": "emergent-behavior",
+        "term": "Emergent Behavior",
+        "category": "basics",
+        "definition": "Habilidade que aparece em modelos grandes sem ter sido ensinada diretamente, como resolver problemas em etapas ou traduzir entre idiomas pouco vistos no treino."
+      },
+      {
+        "id": "llm",
+        "term": "Large Language Model (LLM)",
+        "category": "models",
+        "definition": "Modelo de IA treinado com uma quantidade enorme de texto para prever a próxima palavra (token). Disso surge a capacidade de conversar, resumir, traduzir e escrever código.",
+        "example": "Claude, GPT, Gemini e Llama são LLMs."
+      },
+      {
+        "id": "transformer",
+        "term": "Transformer Model",
+        "category": "models",
+        "definition": "A arquitetura de rede neural por trás de quase todos os LLMs atuais. A ideia central (“attention”) permite que o modelo olhe para todas as partes do texto ao mesmo tempo e entenda quais palavras se relacionam."
+      },
+      {
+        "id": "multimodal-model",
+        "term": "Multimodal Model",
+        "category": "models",
+        "definition": "Modelo que entende (e às vezes gera) mais de um tipo de conteúdo: texto, imagem, áudio, vídeo.",
+        "example": "Enviar o print de uma tela com erro e perguntar o que está errado."
+      },
+      {
+        "id": "reasoning-models",
+        "term": "Reasoning Models",
+        "category": "models",
+        "definition": "Modelos que “pensam antes de responder”: gastam mais tempo e tokens raciocinando em etapas internas antes de dar a resposta final. Costumam ir melhor em matemática, lógica e código complexo."
+      },
+      {
+        "id": "fine-tuning",
+        "term": "Fine-tuning",
+        "category": "models",
+        "definition": "Treinar um pouco mais um modelo que já existe, com seus próprios exemplos, para especializá-lo em uma tarefa, um tom de voz ou um domínio.",
+        "example": "Ajustar um modelo com milhares de respostas do seu suporte para que ele responda no padrão da empresa."
+      },
+      {
+        "id": "hallucination",
+        "term": "Hallucination",
+        "category": "models",
+        "definition": "Quando a IA inventa algo com total confiança: um fato, uma citação, uma função de biblioteca que não existe. Por isso é importante conferir e dar fontes confiáveis no contexto.",
+        "example": "O modelo sugere um método `.toSmartJSON()` que nunca existiu na biblioteca."
+      },
+      {
+        "id": "temperature",
+        "term": "Temperature (AI Temperature)",
+        "category": "models",
+        "definition": "Configuração que controla o quanto a resposta é previsível ou criativa. Temperature baixa dá respostas mais consistentes; alta dá respostas mais variadas (e mais arriscadas).",
+        "example": "Para gerar código, use temperature baixa; para ideias de nomes de produto, uma mais alta."
+      },
+      {
+        "id": "prompt-engineering",
+        "term": "Prompt Engineering",
+        "category": "prompting",
+        "definition": "A prática de escrever bons pedidos (prompts) para a IA: dar contexto, objetivo, formato esperado, exemplos e restrições claras para obter respostas melhores.",
+        "example": "Em vez de “melhore esse texto”, dizer “reescreva para um público leigo, em até 3 parágrafos, mantendo os números”."
+      },
+      {
+        "id": "system-prompt",
+        "term": "Meta Prompt / System Prompt",
+        "category": "prompting",
+        "definition": "Instruções de fundo que valem para a conversa inteira e definem o papel, as regras e o tom da IA. Normalmente o usuário final não vê.",
+        "example": "“Você é um assistente de suporte da Loja X. Responda sempre em português e nunca prometa prazos.”"
+      },
+      {
+        "id": "chain-of-thought",
+        "term": "Chain-of-thought Prompting",
+        "category": "prompting",
+        "definition": "Pedir que a IA mostre o raciocínio passo a passo antes da resposta final. Isso costuma melhorar o resultado em problemas que exigem várias etapas.",
+        "example": "“Pense passo a passo antes de responder: quanto custa o pedido com frete e desconto?”"
+      },
+      {
+        "id": "context-window",
+        "term": "Context window",
+        "category": "prompting",
+        "definition": "A “memória de curto prazo” do modelo: o máximo de tokens que ele consegue considerar de uma vez, somando suas instruções, arquivos, histórico da conversa e a própria resposta. O que passa do limite é cortado ou resumido."
+      },
+      {
+        "id": "context-engineering",
+        "term": "Context engineering",
+        "category": "prompting",
+        "definition": "Evolução do prompt engineering: cuidar de tudo o que entra na context window (instruções, documentos, ferramentas, histórico, memória) para que o modelo tenha exatamente a informação certa, sem excesso."
+      },
+      {
+        "id": "references",
+        "term": "References",
+        "category": "prompting",
+        "definition": "Materiais de apoio que você entrega à IA para ela se basear: documentação, guias de estilo, exemplos, links. Em skills, costumam ficar numa pasta `references/` e são lidos só quando necessários, economizando contexto.",
+        "example": "A skill web-design-guidelines guarda suas regras de acessibilidade em `references/guidelines.md`."
+      },
+      {
+        "id": "agents",
+        "term": "Agents",
+        "category": "agents",
+        "definition": "Um LLM que não só responde, mas age: planeja etapas, usa ferramentas (ler arquivos, rodar comandos, pesquisar na web), observa o resultado e repete até concluir a tarefa.",
+        "example": "Pedir “corrija o teste que está falhando” e o agent abrir os arquivos, rodar os testes, editar o código e rodar de novo."
+      },
+      {
+        "id": "subagent",
+        "term": "Subagent",
+        "category": "agents",
+        "definition": "Um agent especializado que o agent principal chama para uma tarefa específica. Ele trabalha com seu próprio contexto e instruções e devolve só o resultado, mantendo a conversa principal enxuta.",
+        "example": "O agent web-pending-change-auditor deste hub é um subagent de code review."
+      },
+      {
+        "id": "agentic-workflow",
+        "term": "Agentic workflow",
+        "category": "agents",
+        "definition": "Fluxo de trabalho em que a IA executa várias etapas com certa autonomia (planejar, executar, verificar, corrigir), em vez de responder uma pergunta isolada."
+      },
+      {
+        "id": "multi-agent-system",
+        "term": "Multi-agent system",
+        "category": "agents",
+        "definition": "Vários agents trabalhando juntos, cada um com um papel (por exemplo: um planeja, outro programa, outro revisa), trocando resultados entre si."
+      },
+      {
+        "id": "tool-use",
+        "term": "Tool use / Function calling",
+        "category": "agents",
+        "definition": "Capacidade do modelo de pedir a execução de uma ferramenta ou função externa (buscar na web, consultar uma API, ler um arquivo) e usar o resultado na resposta.",
+        "example": "O modelo chama `get_weather(\"São Paulo\")` em vez de chutar a previsão do tempo."
+      },
+      {
+        "id": "mcp",
+        "term": "MCP (Model Context Protocol)",
+        "category": "agents",
+        "definition": "Padrão aberto para conectar IAs a ferramentas e fontes de dados. Um “MCP server” expõe ferramentas, e qualquer app compatível (Claude, Cursor, Codex, Copilot) consegue usá-las. Funciona como uma “tomada universal” para a IA.",
+        "example": "Com o Playwright MCP, o agent consegue abrir um navegador e testar sua aplicação."
+      },
+      {
+        "id": "skill",
+        "term": "Skill",
+        "category": "agents",
+        "definition": "Um pacote de instruções (um arquivo SKILL.md, mais referências e scripts opcionais) que ensina o agent a fazer uma tarefa específica do seu jeito. O agent só carrega a skill quando ela é relevante.",
+        "example": "A skill grill-me faz o agent entrevistar você sobre um plano antes de começar a programar."
+      },
+      {
+        "id": "rag",
+        "term": "RAG (Retrieval-Augmented Generation)",
+        "category": "data",
+        "definition": "Técnica em que, antes de responder, o sistema busca trechos relevantes nos seus documentos e os coloca no prompt. Assim a IA responde com base em informação atual e própria, reduzindo hallucination.",
+        "example": "Um chatbot que consulta o manual interno da empresa antes de responder ao funcionário."
+      },
+      {
+        "id": "embeddings",
+        "term": "Embeddings",
+        "category": "data",
+        "definition": "Uma forma de transformar texto (ou imagens) em uma lista de números que representa o significado. Textos com sentido parecido ficam com números próximos, o que permite buscar por significado, e não só por palavra exata.",
+        "example": "Buscar “como cancelar meu plano” e encontrar o artigo “Encerrar assinatura”."
+      },
+      {
+        "id": "vector-database",
+        "term": "Vector database",
+        "category": "data",
+        "definition": "Banco de dados feito para guardar embeddings e encontrar rapidamente os mais parecidos com uma busca. É uma peça comum em sistemas de RAG.",
+        "example": "pgvector (PostgreSQL), Qdrant, Pinecone e Azure AI Search."
+      }
+    ]
+  }
+}
