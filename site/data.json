@@ -19,6 +19,25 @@
       "description": "Jeitos gerais de trabalhar com IA: esclarecer ideias, fazer brainstorming e planejar antes de escrever código.",
       "items": [
         {
+          "id": "portuguese-text-revision",
+          "type": "skill",
+          "origin": "own",
+          "name": "portuguese-text-revision",
+          "description": "Corrige e aprimora textos em português, preservando o sentido original e devolvendo somente o texto revisado, em texto simples.",
+          "author": "dev-cristhian",
+          "license": "MIT",
+          "url": "https://github.com/dev-cristhian/ai-toolkit/tree/HEAD/skills/portuguese-text-revision",
+          "command": "npx skills add https://github.com/dev-cristhian/ai-toolkit --skill portuguese-text-revision",
+          "tags": [
+            "text-revision",
+            "portuguese",
+            "writing",
+            "grammar",
+            "spelling"
+          ],
+          "requires": []
+        },
+        {
           "id": "brainstorming",
           "type": "skill",
           "origin": "recommended",

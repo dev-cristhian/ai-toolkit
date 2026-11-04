@@ -270,7 +270,7 @@ Not covered: Claude apps (claude.ai/desktop) are only supported for skills (manu
 ## Catalog
 
 <!-- CATALOG:START -->
-_21 items (2 own, 19 recommended). Generated from `catalog.json`; do not edit this section by hand._
+_22 items (3 own, 19 recommended). Generated from `catalog.json`; do not edit this section by hand._
 
 ### Level 1: Methodology
 
@@ -278,7 +278,9 @@ General-purpose ways of working with AI: clarifying ideas, brainstorming and pla
 
 **Own**
 
-_Coming soon._
+| Name | Type | Description | Install |
+| --- | --- | --- | --- |
+| [portuguese-text-revision](./skills/portuguese-text-revision) | Skill | Corrects and improves Portuguese (pt-BR) text while preserving its meaning, information and intent. Use whenever the user asks to correct, proofread, revise, polish or improve a text written in Portuguese, or pastes Portuguese text and asks for it to be fixed, even if they do not say the word "skill". Returns only the revised text as plain text, with no explanations and no Markdown. | `npx skills add https://github.com/dev-cristhian/ai-toolkit --skill portuguese-text-revision` |
 
 **Recommended**
 

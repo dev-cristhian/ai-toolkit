@@ -31,6 +31,35 @@
   ],
   "items": [
     {
+      "id": "portuguese-text-revision",
+      "type": "skill",
+      "level": 1,
+      "origin": "own",
+      "name": "portuguese-text-revision",
+      "description_en": "Corrects and improves Portuguese (pt-BR) text while preserving its meaning, information and intent. Use whenever the user asks to correct, proofread, revise, polish or improve a text written in Portuguese, or pastes Portuguese text and asks for it to be fixed, even if they do not say the word \"skill\". Returns only the revised text as plain text, with no explanations and no Markdown.",
+      "description_pt": "Corrige e aprimora textos em português, preservando o sentido original e devolvendo somente o texto revisado, em texto simples.",
+      "author": "dev-cristhian",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/dev-cristhian/ai-toolkit",
+        "path": "skills/portuguese-text-revision",
+        "ref": null
+      },
+      "install": {
+        "method": "npx-skills",
+        "repo": "https://github.com/dev-cristhian/ai-toolkit",
+        "skill": "portuguese-text-revision",
+        "command": "npx skills add https://github.com/dev-cristhian/ai-toolkit --skill portuguese-text-revision"
+      },
+      "tags": [
+        "text-revision",
+        "portuguese",
+        "writing",
+        "grammar",
+        "spelling"
+      ]
+    },
+    {
       "id": "web-design-guidelines",
       "type": "skill",
       "level": 2,
